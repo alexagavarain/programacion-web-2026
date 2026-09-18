@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Formulario para registrar una nueva tarea en UniTasks">
+  <title>Nueva tarea | UniTasks</title>
+</head>
+
+<body>
+  <header>
+    <h1>Nueva tarea</h1>
+  </header>
+
+  <main>
+    <form action="/process-task" method="GET">
+      <fieldset>
+
+        <div>
+          <label for="task-title">Título</label>
+          <input required type="text" id="task-title" name="title" placeholder="Título de la tarea">
+        </div>
+
+        <div>
+          <label for="task-description">Descripción</label>
+          <textarea required id="task-description" name="description" rows="5" cols="40"
+            placeholder="Escribe una descripción..."></textarea>
+        </div>
+
+        <div>
+          <label for="task-subject">Materia</label>
+          <select required id="task-subject" name="subject">
+            <option value="" selected disabled>Selecciona una materia</option>
+            <option value="database-2">Base de Datos II</option>
+            <option value="web-programming">Programación Web</option>
+            <option value="software-engineering-1">Ingeniería de Software I</option>
+            <option value="user-interface-design">Diseño de Interfaces de Usuario</option>
+            <option value="computation-theory">Teoría de la Computación</option>
+            <option value="networks-1">Redes I</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="task-due-date">Fecha de entrega</label>
+          <input required type="date" id="task-due-date" name="due_date">
+        </div>
+
+        <div>
+          <label for="task-due-time">Hora de entrega</label>
+          <input required type="time" id="task-due-time" name="due_time">
+        </div>
+      </fieldset>
+
+      <div>
+        <button type="submit">Guardar</button>
+        <button type="reset">Restablecer</button>
+      </div>
+    </form>
+  </main>
+</body>
+
+</html>
