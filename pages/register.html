@@ -5,29 +5,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro</title>
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
-  <h1>Registro</h1>
+  <h1 class="register-title">Registro</h1>
   <form action="/registrar-usuario" method="POST" enctype="multipart/form-data">
-    <fieldset>
+    <fieldset class="form-container">
 
-      <div>
+      <div class="input-field">
         <label for="inp-usuario">Nombre completo</label>
         <input autofocus required type="text" name="nombre_usuario" id="inp-usuario" placeholder="Nombre Apellido(s)">
       </div>
 
-      <div>
+      <div class="input-field">
         <label for="inp-email">Correo electrónico</label>
         <input required type="email" name="email" id="inp-email" placeholder="estudiante@alu.uabcs.mx">
       </div>
 
-      <div>
+      <div class="input-field">
         <label for="inp-password">Contraseña</label>
         <input required type="password" name="password" id="inp-password" placeholder="Ingresa tu contraseña">
       </div>
 
-      <div>
+      <div class="input-field">
         <label for="sel-career">Carrera</label>
         <select required id="sel-career" name="career">
           <option value="Ingenieria en Desarrollo de Software" selected>IDS</option>
@@ -37,7 +38,7 @@
         </select>
       </div>
 
-      <div>
+      <div class="input-field">
         <label for="sel-semester">Semestre</label>
         <select required id="sel-semester" name="semester">
           <option value="1" selected>1</option>
@@ -48,7 +49,7 @@
         </select>
       </div>
 
-      <div>
+      <div class="input-field">
         <label for="sel-group">Grupo</label>
         <select required id="sel-group" name="group">
           <option value="A" selected>A</option>
@@ -56,7 +57,7 @@
         </select>
       </div>
 
-      <div>
+      <div class="input-field">
         <label>Turno</label>
         <label for="rad-matutino">Matutino</label>
         <input type="radio" id="rad-matutino" name="shift" value="M" checked>
@@ -67,7 +68,7 @@
     </fieldset>
 
     <div>
-      <button type="submit">Registrarme</button>
+      <button id="register-button" type="submit">Registrarme</button>
     </div>
   </form>
 </body>
