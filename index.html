@@ -13,14 +13,23 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="canonical" href="index.html">
   <link rel="icon" href="assets/icons/unitasks-logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
   <header>
     <img src="assets/img/unitasks-logo.png" alt="Logo UniTasks" width="30" height="30">
-    <h1 class="app-name">UniTasks</h1>
+    <span class="app-name">UniTasks</span>
 
-    <h2>Tareas</h2>
+    <h1>Tareas</h1>
     <button id="new-task-button" type="button" onclick="window.location.href='pages/new-task.html'">
       <img src="assets/icons/plus-icon.svg" alt="Ícono nueva tarea" width="20" height="20">
       Nueva Tarea
@@ -33,9 +42,9 @@
     <nav class="menu-bar">
       <div>
         <img src="assets/img/user-pfp.png" alt="Foto de perfil" width="30" height="30">
-        <p>Nombre Apellido</p>
-        <p>Carrera</p>
-        <p>Semestre</p>
+        <span>Nombre Apellido</span>
+        <span>Carrera</span>
+        <span>Semestre</span>
       </div>
       <ul>
         <img src="assets/icons/menu-icon.svg" alt="Ícono menu" width="20" height="20">
@@ -64,19 +73,15 @@
   </aside>
 
   <main>
-    <h2>Tareas</h2>
-
-    <article>
-      <p>5 pendientes • 3 completadas</p>
-    </article>
+    <p>5 pendientes • 3 completadas</p>
 
     <section id="pending-tasks">
       <img src="assets/icons/pending-tasks-dot.svg" alt="Ícono tareas pendientes" width="5" height="5">
-      <h2>Pendientes (5)</h2>
+      <h3 class="task-status-title">Pendientes (5)</h3>
 
       <article class="task-container">
         <img src="assets/icons/pending-check-icon.svg" alt="Check desmarcado" width="15" height="15">
-        <h3>Título de la tarea</h3>
+        <span>Título de la tarea</span>
         <img src="assets/icons/edit-icon.svg" alt="Editar tarea" width="12" height="12">
         <p><strong>Descripción:</strong> Escriba aquí la descripción de la tarea</p>
         <p><strong>Materia:</strong> Escriba aquí el nombre de la materia</p>
@@ -87,11 +92,11 @@
 
     <section id="completed-tasks">
       <img src="assets/icons/completed-tasks-dot.svg" alt="Ícono tareas completadas" width="5" height="5">
-      <h2>Completadas (3)</h2>
+      <h3 class="task-status-title">Completadas (3)</h3>
 
       <article class="task-container">
         <img src="assets/icons/completed-check-icon.svg" alt="Check marcado" width="15" height="15">
-        <h3>Título de la tarea</h3>
+        <span>Título de la tarea</span>
         <img src="assets/icons/edit-icon.svg" alt="Editar tarea" width="12" height="12">
         <p><strong>Descripción:</strong> Escriba aquí la descripción de la tarea</p>
         <p><strong>Materia:</strong> Escriba aquí el nombre de la materia</p>
