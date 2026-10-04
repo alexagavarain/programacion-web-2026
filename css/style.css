@@ -27,6 +27,37 @@ a {
 .app-name {
   font-size: 1.8rem;
   font-weight: bold;
+  vertical-align: middle;
+}
+
+.sidebar-menu-icon {
+  vertical-align: middle;
+}
+
+.sidebar-menu-box {
+  display: inline-block;
+  vertical-align: middle;
+  width: 8%;
+  text-align: left;
+}
+
+.app-name-box {
+  display: inline-block;
+  vertical-align: middle;
+  width: 84%;
+  text-align: center;
+}
+
+.sidebar-app-icon {
+  vertical-align: middle;
+}
+
+.user-profile-item {
+  vertical-align: middle;
+}
+
+.user-profile {
+  text-align: center;
 }
 
 .register-title {
@@ -36,15 +67,26 @@ a {
 }
 
 .register-link {
+  display: block;
   color: rgb(73, 73, 255);
   text-decoration-line: underline;
+  text-align: center;
+}
+
+.tasks-summary {
+  margin: 8px 0;
 }
 
 .task-status-title {
   display: inline-block;
+  vertical-align: middle;
   font-family: 'Inter', sans-serif;
   text-transform: uppercase;
   font-size: 0.8rem;
+}
+
+.task-status-dot {
+  vertical-align: middle;
 }
 
 .task-title {
@@ -110,7 +152,7 @@ a {
   width: 74%;
   min-height: 662px;
   margin: 1px;
-  padding: 12px;
+  padding: 16px;
   background-color: var(--background-gray-white);
   border: 1px solid var(--secondary-gray);
   border-radius: 4px;
@@ -122,6 +164,7 @@ a {
   vertical-align: middle;
   width: 49%;
   margin: 0px;
+  font-size: 1.8rem;
 }
 
 .new-task-button-box {
