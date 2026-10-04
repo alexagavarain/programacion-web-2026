@@ -6,31 +6,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Formulario para registrar una nueva tarea en UniTasks">
   <title>Nueva tarea | UniTasks</title>
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body>
+<body class="new-task-body">
   <header>
-    <h1>Nueva tarea</h1>
+    <h1 class="new-task-title">Nueva tarea</h1>
   </header>
 
-  <main>
-    <form action="/process-task" method="GET">
-      <fieldset>
-
+  <main class="new-task-main">
+    <div class="new-task-modal">
+      <form action="/process-task" method="GET">
         <div>
-          <label for="task-title">Título</label>
-          <input autofocus required type="text" id="task-title" name="title" placeholder="Título de la tarea">
+          <label class="form-label" for="task-title">Título</label>
+          <input class="long-form-inp" autofocus required type="text" id="task-title" name="title"
+            placeholder="Título de la tarea">
         </div>
 
         <div>
-          <label for="task-description">Descripción</label>
-          <textarea required id="task-description" name="description" rows="5" cols="40"
+          <label class="form-label" for="task-description">Descripción</label>
+          <textarea class="long-form-inp" required id="task-description" name="description" rows="5" cols="40"
             placeholder="Escribe una descripción..."></textarea>
         </div>
 
         <div>
-          <label for="task-subject">Materia</label>
-          <select required id="task-subject" name="subject">
+          <label class="form-label" for="task-subject">Materia</label>
+          <select class="long-form-inp" required id="task-subject" name="subject">
             <option value="" selected disabled>Selecciona una materia</option>
             <option value="database-2">Base de Datos II</option>
             <option value="web-programming">Programación Web</option>
@@ -42,21 +43,21 @@
         </div>
 
         <div>
-          <label for="task-due-date">Fecha de entrega</label>
-          <input required type="date" id="task-due-date" name="due_date">
+          <label class="form-label" for="task-due-date">Fecha de entrega</label>
+          <input class="long-form-inp" required type="date" id="task-due-date" name="due_date">
         </div>
 
         <div>
-          <label for="task-due-time">Hora de entrega</label>
-          <input required type="time" id="task-due-time" name="due_time">
+          <label class="form-label" for="task-due-time">Hora de entrega</label>
+          <input class="long-form-inp" required type="time" id="task-due-time" name="due_time">
         </div>
-      </fieldset>
 
-      <div>
-        <button type="submit">Guardar</button>
-        <button type="reset">Restablecer</button>
-      </div>
-    </form>
+        <div>
+          <button id="new-task-cancel" type="reset">Cancelar</button>
+          <button id="new-task-save" itype="submit">Guardar</button>
+        </div>
+      </form>
+    </div>
   </main>
 </body>
 
