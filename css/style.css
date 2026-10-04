@@ -10,18 +10,13 @@
   box-sizing: border-box;
 }
 
-label {
-  font-weight: bold;
-}
-
-li {
-  background-color: var(--secondary-blue-gray);
-  margin: 5px;
-}
-
 a {
   color: black;
   text-decoration: none;
+}
+
+p {
+  margin-bottom: 7px;
 }
 
 .app-name {
@@ -41,6 +36,16 @@ a {
   text-align: left;
 }
 
+.menu-item {
+  display: block;
+  margin: 5px;
+}
+
+.menu-icon {
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
 .app-name-box {
   display: inline-block;
   vertical-align: middle;
@@ -57,12 +62,6 @@ a {
 }
 
 .user-profile {
-  text-align: center;
-}
-
-.register-title {
-  font-weight: bold;
-  font-size: 1.2rem;
   text-align: center;
 }
 
@@ -92,25 +91,17 @@ a {
 .task-title {
   display: inline-block;
   margin: 0;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: normal;
 }
 
 .task-date {
   display: inline-block;
+  margin: 0px;
 }
 
 .menu-bar {
-  background-color: var(--secondary-gray);
-}
-
-.form-container {
-  width: 400px;
-  background-color: rgb(215, 222, 255);
-}
-
-.input-field {
-  margin-bottom: 20px;
+  width: 100%;
 }
 
 #new-task-button {
@@ -122,16 +113,6 @@ a {
   border: none;
 }
 
-#register-button {
-  margin: 20px;
-  width: 30%;
-  font-size: 0.8rem;
-  background-color: var(--primary-blue);
-  color: white;
-  border-radius: 30px;
-  border: none;
-}
-
 .sidebar-box {
   display: inline-block;
   vertical-align: top;
@@ -140,8 +121,8 @@ a {
   min-height: 662px;
   margin: 1px;
   padding: 16px;
-  background-color: var(--secondary-gray);
-  border: 1px solid var(--secondary-blue-gray);
+  background-color: var(--background-gray-white);
+  border: 1px solid var(--secondary-gray);
   border-radius: 4px;
   text-align: left;
 }
@@ -153,7 +134,6 @@ a {
   min-height: 662px;
   margin: 1px;
   padding: 16px;
-  background-color: var(--background-gray-white);
   border: 1px solid var(--secondary-gray);
   border-radius: 4px;
   text-align: left;
@@ -175,10 +155,139 @@ a {
   text-align: right;
 }
 
+.task-check {
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
 .task-box {
+  width: 33%;
+  height: 160px;
   margin-bottom: 12px;
-  padding: 16px;
+  padding: 12px 16px;
   background-color: rgb(240, 240, 240);
   border: 1px solid var(--secondary-gray);
   border-radius: 16px;
+  font-size: 0.8rem;
+}
+
+
+
+
+
+
+/* REGISTER PAGE */
+
+.register-body {
+  text-align: center;
+}
+
+.register-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+#register-button {
+  margin: 20px;
+  width: 32%;
+  height: 40px;
+  font-size: 1rem;
+  font-weight: 400;
+  background-color: var(--primary-blue);
+  color: white;
+  border-radius: 13px;
+  border: none;
+}
+
+.form-container {
+  display: inline-block;
+  width: 50%;
+  width: 400px;
+  background-color: var(--background-gray-white);
+  border: 1px solid var(--secondary-gray);
+  border-radius: 20px;
+  box-shadow: 5px 30px 30px rgba(0, 0, 0, 0.058);
+  padding: 30px 20px;
+}
+
+.form-label {
+  display: block;
+  text-align: left;
+  margin-bottom: 7px;
+  padding-left: 4px;
+}
+
+.long-form-inp {
+  width: 100%;
+  padding: 5px 0px;
+  border: 1px solid var(--secondary-gray);
+  border-radius: 4px;
+  text-align: start;
+  padding: 5px 10px;
+  margin-bottom: 20px;
+}
+
+.radio-input {
+  margin-left: 30px;
+}
+
+
+
+
+/* NEW TASK PAGE  */
+
+.new-task-body {
+  text-align: center;
+}
+
+.new-task-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.new-task-modal {
+  display: inline-block;
+  width: 30%;
+  background-color: var(--background-gray-white);
+  border: 1px solid var(--secondary-gray);
+  border-radius: 10px;
+  padding: 30px 20px;
+  box-shadow: 5px 30px 30px rgba(0, 0, 0, 0.058);
+}
+
+#register-button {
+  margin: 20px;
+  width: 32%;
+  height: 40px;
+  font-size: 1rem;
+  font-weight: 400;
+  background-color: var(--primary-blue);
+  color: white;
+  border-radius: 13px;
+  border: none;
+}
+
+#new-task-cancel {
+  width: 40%;
+  background-color: var(--background-gray-white);
+  color: var(--primary-blue);
+  border: 1px solid var(--secondary-blue-gray);
+  border-radius: 20px;
+  padding: 5px 20px;
+  margin-right: 20px;
+}
+
+#new-task-save {
+  width: 40%;
+  background-color: var(--primary-blue);
+  color: var(--background-gray-white);
+  border: none;
+  border-radius: 20px;
+  padding: 5px 20px;
 }
