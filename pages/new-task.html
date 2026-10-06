@@ -9,29 +9,29 @@
   <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body class="new-task-body">
+<body class="new-task__body">
   <header>
-    <h1 class="new-task-title">Nueva tarea</h1>
+    <h1 class="new-task__title">Nueva tarea</h1>
   </header>
 
-  <main class="new-task-main">
-    <div class="new-task-modal">
+  <main class="new-task__main">
+    <div class="new-task__modal">
       <form action="/process-task" method="GET">
         <div>
-          <label class="form-label" for="task-title">Título</label>
-          <input class="long-form-inp" autofocus required type="text" id="task-title" name="title"
+          <label class="new-task__form-label" for="task-title">Título</label>
+          <input class="new-task__long-form-input" autofocus required type="text" id="task-title" name="title"
             placeholder="Título de la tarea">
         </div>
 
         <div>
-          <label class="form-label" for="task-description">Descripción</label>
-          <textarea class="long-form-inp" required id="task-description" name="description" rows="5" cols="40"
-            placeholder="Escribe una descripción..."></textarea>
+          <label class="new-task__form-label" for="task-description">Descripción</label>
+          <textarea class="new-task__long-form-input" required id="task-description" name="description" rows="5"
+            cols="40" placeholder="Escribe una descripción..."></textarea>
         </div>
 
         <div>
-          <label class="form-label" for="task-subject">Materia</label>
-          <select class="long-form-inp" required id="task-subject" name="subject">
+          <label class="new-task__form-label" for="task-subject">Materia</label>
+          <select class="new-task__long-form-input" required id="task-subject" name="subject">
             <option value="" selected disabled>Selecciona una materia</option>
             <option value="database-2">Base de Datos II</option>
             <option value="web-programming">Programación Web</option>
@@ -43,13 +43,13 @@
         </div>
 
         <div>
-          <label class="form-label" for="task-due-date">Fecha de entrega</label>
-          <input class="long-form-inp" required type="date" id="task-due-date" name="due_date">
+          <label class="new-task__form-label" for="task-due-date">Fecha de entrega</label>
+          <input class="new-task__long-form-input" required type="date" id="task-due-date" name="due_date">
         </div>
 
         <div>
-          <label class="form-label" for="task-due-time">Hora de entrega</label>
-          <input class="long-form-inp" required type="time" id="task-due-time" name="due_time">
+          <label class="new-task__form-label" for="task-due-time">Hora de entrega</label>
+          <input class="new-task__long-form-input" required type="time" id="task-due-time" name="due_time">
         </div>
 
         <div>
