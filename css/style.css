@@ -169,11 +169,17 @@ ul {
 }
 
 .new-task-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   margin: 0px;
-  padding: 8px 16px;
+  width: 150px;
+  height: 39px;
+  font-size: 1rem;
   background-color: var(--primary-blue);
   color: white;
-  border-radius: 5px;
+  border-radius: 7px;
   border: 1px solid transparent;
   transition: all 0.3s;
 }
@@ -307,7 +313,15 @@ ul {
   background-color: var(--primary-blue);
   color: white;
   border-radius: 13px;
-  border: none;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+}
+
+#register-button:hover {
+  background-color: #F1F5FF;
+  border: 1px solid var(--primary-blue);
+  color: var(--primary-blue);
+  cursor: pointer;
 }
 
 .register__form-container {
@@ -336,6 +350,22 @@ ul {
   text-align: start;
   padding: 5px 10px;
   margin-bottom: 20px;
+}
+
+.register__long-form-input:focus {
+  border-color: var(--primary-blue);
+}
+
+.register__long-form-input:focus-visible {
+  outline: 3px solid var(--primary-blue);
+}
+
+.new-task__long-form-input:focus {
+  border-color: var(--primary-blue);
+}
+
+.new-task__long-form-input:focus-visible {
+  outline: 3px solid var(--primary-blue);
 }
 
 .register__radio-input {
@@ -394,7 +424,8 @@ ul {
   background-color: var(--primary-blue);
   color: white;
   border-radius: 13px;
-  border: none;
+  border: 1px solid transparent;
+  transition: all 0.3s;
 }
 
 #new-task-cancel {
@@ -405,13 +436,29 @@ ul {
   border-radius: 20px;
   padding: 5px 20px;
   margin-right: 20px;
+  transition: all 0.3s;
+}
+
+#new-task-cancel:hover {
+  background-color: var(--secondary-blue-gray);
+  color: white;
+  border-color: var(--secondary-blue-gray);
+  cursor: pointer;
 }
 
 #new-task-save {
   width: 40%;
   background-color: var(--primary-blue);
-  color: var(--background-gray-white);
-  border: none;
+  color: white;
+  border: 1px solid transparent;
   border-radius: 20px;
   padding: 5px 20px;
+  transition: all 0.3s;
+}
+
+#new-task-save:hover {
+  background-color: #F1F5FF;
+  border: 1px solid var(--primary-blue);
+  color: var(--primary-blue);
+  cursor: pointer;
 }
