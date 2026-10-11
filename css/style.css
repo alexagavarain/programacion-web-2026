@@ -48,7 +48,14 @@ ul {
   text-align: left;
 }
 
-.sidebar__menu-item {
+.sidebar__navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.sidebar__navbar-item {
   display: block;
   margin: 3px;
   border-radius: 5px;
@@ -57,7 +64,7 @@ ul {
   transition: all 0.3s;
 }
 
-.sidebar__menu-item:hover {
+.sidebar__navbar-item:hover {
   background-color: var(--secondary-gray);
   cursor: pointer;
 }
@@ -111,10 +118,6 @@ ul {
   text-decoration-line: underline;
   text-align: center;
   margin-top: 20px;
-}
-
-.sidebar__menu-bar {
-  width: 100%;
 }
 
 .sidebar {
@@ -228,10 +231,17 @@ ul {
   margin: 0px;
 }
 
+.tasks__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
 .task__card {
-  width: 33%;
+  display: flex;
+  flex: 0 1 30%;
+  min-width: 220px;
   height: 140px;
-  margin-bottom: 12px;
   background-color: transparent;
   border: 1px solid var(--secondary-gray);
   box-shadow: 1px 2px 20px #00000008;
@@ -247,23 +257,21 @@ ul {
 }
 
 .task__color {
-  display: inline-block;
-  width: 8px;
-  height: 100%;
+  flex: 0 0 8px;
   background-color: rgb(83, 164, 121);
   border-radius: 100px 0px 0px 100px;
 }
 
 .task__content {
-  display: inline-block;
-  vertical-align: top;
-  width: 95%;
+  display: flex;
+  flex: 1;
   height: 100%;
   padding: 20px 16px;
 }
 
 .task__title {
-  margin-right: 60px;
+  flex: 1;
+  margin: 0;
 }
 
 .task__subject {
@@ -271,22 +279,36 @@ ul {
   border-radius: 20px;
   border: none;
   padding: 3px 10px;
-  margin-right: 50px;
+  margin: 0;
+  flex: 0 0 auto;
 }
 
 .task__check {
-  display: inline;
-  vertical-align: top;
+  flex: 0 0 18px;
   margin-right: 10px;
 }
 
 .task__data {
-  display: inline-block;
-  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  align-items: center;
+  gap: 8px 4px;
 }
 
 .task__description {
-  margin-bottom: 20px;
+  flex: 1 0 100%;
+  margin: 0;
+}
+
+.task__edit-icon {
+  flex: 0 0 12px;
+}
+
+.task__date-info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .back-to-top {
