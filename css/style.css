@@ -35,6 +35,28 @@ ul {
   padding: 0;
 }
 
+.layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-areas:
+    "sidebar  header"
+    "sidebar main"
+    "footer  footer";
+  gap: 0 30px;
+}
+
+.sidebar {
+  grid-area: sidebar
+}
+
+.tasks {
+  grid-area: main;
+}
+
+.footer {
+  grid-area: footer;
+}
+
 .sidebar__app-name {
   font-size: 1.3rem;
   font-weight: 500;
@@ -142,11 +164,22 @@ ul {
 .tasks {
   display: inline-block;
   vertical-align: top;
-  width: 74%;
+  width: 100%;
   min-height: 662px;
-  margin: 1px;
+  margin: 0 3% 3% 0;
   padding: 16px;
   text-align: left;
+}
+
+.tasks__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
+}
+
+.tasks__header__left-elements {
+  display: flex;
+  flex-direction: column;
 }
 
 .tasks__summary {
@@ -161,14 +194,6 @@ ul {
   margin: 0px;
   font-size: 1.3rem;
   font-weight: 500;
-}
-
-.tasks__new-button-box {
-  display: inline-block;
-  vertical-align: middle;
-  width: 50%;
-  margin: 0px;
-  text-align: right;
 }
 
 .new-task-button {
@@ -209,6 +234,14 @@ ul {
 .tasks__status-dot {
   vertical-align: middle;
   margin-right: 5px;
+}
+
+.tasks__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
 
 .tasks__status-title {
@@ -326,7 +359,7 @@ ul {
   background-color: var(--primary-blue);
   color: white;
   border: 1px solid transparent;
-  border-radius: 7px;
+  border-radius: 50px;
   transition: background-color 0.2s;
 }
 
@@ -334,6 +367,18 @@ ul {
   background-color: #F1F5FF;
   border-color: var(--primary-blue);
   color: var(--primary-blue);
+}
+
+.footer {
+  background-color: #d7e0eb;
+  height: 100%;
+  width: 100%;
+}
+
+.footer p {
+  font-size: 0.7rem;
+  color: var(--secondary-blue-gray);
+  padding: 5px 10px;
 }
 
 /* REGISTER PAGE */

@@ -22,7 +22,7 @@
     rel="stylesheet">
 </head>
 
-<body id="top">
+<body class="layout" id="top">
   <div class="sidebar">
     <header>
       <div class="sidebar__menu-icon">
@@ -72,29 +72,26 @@
           </li>
         </ul>
       </nav>
-      <div class="separator-line"></div>
-
-      <a class="sidebar__register-link" href="pages/register.html" title="Ir al registro">Registrarse</a>
     </aside>
   </div>
 
   <div class="tasks">
     <header class="tasks__header">
-      <h1 class="tasks__title-box">Tareas</h1>
-      <div class="tasks__new-button-box">
-        <button class="new-task-button" id="new-task-button" type="button"
-          onclick="window.location.href='pages/new-task.html'">
-          <img class="new-task-button__icon new-task-button__icon--normal" src="assets/icons/plus-icon.svg"
-            alt="Ícono nueva tarea" width="12" height="12">
-          <img class="new-task-button__icon new-task-button__icon--hover" src="assets/icons/plus-icon-blue.svg"
-            alt="Ícono nueva tarea" width="12" height="12">
-          Nueva tarea
-        </button>
+      <div class="tasks__header_left-elements">
+        <h1 class="tasks__title-box">Tareas</h1>
+        <p class="tasks__summary">5 pendientes • 5 completadas</p>
       </div>
-      <p class="tasks__summary">5 pendientes • 5 completadas</p>
+      <button class="new-task-button" id="new-task-button" type="button"
+        onclick="window.location.href='pages/new-task.html'">
+        <img class="new-task-button__icon new-task-button__icon--normal" src="assets/icons/plus-icon.svg"
+          alt="Ícono nueva tarea" width="12" height="12">
+        <img class="new-task-button__icon new-task-button__icon--hover" src="assets/icons/plus-icon-blue.svg"
+          alt="Ícono nueva tarea" width="12" height="12">
+        Nueva tarea
+      </button>
     </header>
 
-    <main>
+    <main class="tasks__content">
       <section id="pending-tasks">
         <div class="pending-tasks__title">
           <img class="tasks__status-dot" src="assets/icons/pending-tasks-dot.svg" alt="Ícono tareas pendientes"
@@ -289,12 +286,11 @@
     </main>
   </div>
 
-  <footer>
-    <hr>
-    <p>Versión de Software: V1.0</p>
-    <p>Derechos de Autor: UniTasks®</p>
+  <footer class="footer">
+    <p>Software desarrollado por UniTasks®</p>
   </footer>
   <a class="back-to-top" href="#top">↑</a>
+  </div>
 </body>
 
 </html>
