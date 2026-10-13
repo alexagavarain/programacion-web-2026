@@ -3,6 +3,11 @@
   --secondary-blue-gray: #64769A;
   --secondary-gray: #B6C2D0;
   --background-gray-white: #F1F5FF;
+  --card-spacing: 16px;
+  --main-container-gap: 15px;
+  --task-card-width: 270px;
+  --task-card-height: 140px;
+  --font-size: 16px;
 }
 
 * {
@@ -100,7 +105,6 @@ ul {
   display: inline-block;
   width: 84%;
   text-align: center;
-  margin-bottom: 10px;
 }
 
 .sidebar__app-icon {
@@ -144,11 +148,8 @@ ul {
 
 .sidebar {
   display: inline-block;
-  vertical-align: top;
   width: 20%;
   min-width: 250px;
-  min-height: 662px;
-  margin: 1px;
   padding: 16px;
   background-color: var(--background-gray-white);
   text-align: left;
@@ -162,13 +163,12 @@ ul {
 }
 
 .tasks {
-  display: inline-block;
-  vertical-align: top;
+  display: flex;
+  flex-direction: column;
+  gap: var(--main-container-gap);
   width: 100%;
   min-height: 662px;
-  margin: 0 3% 3% 0;
   padding: 16px;
-  text-align: left;
 }
 
 .tasks__header {
@@ -231,13 +231,6 @@ ul {
   display: inline;
 }
 
-.subjects-menu {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-}
-
-
 .tasks__status-dot {
   vertical-align: middle;
   margin-right: 5px;
@@ -251,21 +244,26 @@ ul {
   gap: 15px;
 }
 
+.subjects-menu {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
 .subjects-menu button {
-  background-color: var(--secondary-gray);
-  color: var(--primary-blue);
-  border: 1px solid transparent;
+  background-color: rgb(192, 255, 221);
+  color: rgb(83, 164, 121);
+  border: none;
   border-radius: 50px;
-  padding: 2px 10px;
+  padding: 3px 10px;
   font-size: 0.9rem;
-  margin-top: 15px;
   transition: all 0.3s;
 }
 
 .subjects-menu button:hover {
-  background-color: #ffffff;
-  color: var(--primary-blue);
-  border: 1px solid var(--primary-blue);
+  background-color: rgb(83, 164, 121);
+  color: rgb(192, 255, 221);
+  cursor: pointer;
 }
 
 .tasks__status-title {
@@ -291,25 +289,25 @@ ul {
 .tasks__list {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: var(--card-spacing);
 }
 
-.task__card {
+.task-card {
   display: flex;
   flex: 0 1 30%;
-  min-width: 220px;
-  height: 140px;
+  min-width: var(--task-card-width);
+  height: var(--task-card-height);
   background-color: transparent;
-  border: 1px solid var(--secondary-gray);
+  border: 1px solid #d7e0eb;
   box-shadow: 1px 2px 20px #00000008;
   border-radius: 12px;
   font-size: 0.8rem;
   transition: all 0.3s;
 }
 
-.task__card:hover {
-  transform: scale(1.01);
-  border-color: #768195;
+.task-card:hover {
+  transform: scale(1.005);
+  border-color: rgb(83, 164, 121);
   cursor: pointer;
 }
 
@@ -333,6 +331,7 @@ ul {
 
 .task__subject {
   background-color: rgb(192, 255, 221);
+  color: rgb(83, 164, 121);
   border-radius: 20px;
   border: none;
   padding: 3px 10px;
@@ -576,4 +575,91 @@ ul {
   border: 1px solid var(--primary-blue);
   color: var(--primary-blue);
   cursor: pointer;
+}
+
+
+/* MEDIA QUERIES */
+
+@media (max-width: 767px) {
+  :root {
+    --task-card-width: 95vw;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main"
+      "footer";
+    gap: 0 30px;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: 60px;
+    padding: 10px;
+  }
+
+  .sidebar__header {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    height: 100%;
+    justify-content: start;
+    align-items: center;
+    background-color: var(--background-gray-white);
+    text-align: left;
+  }
+
+  .sidebar__body {
+    display: none;
+  }
+}
+
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --task-card-width: 95vw;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main"
+      "footer";
+    gap: 0 30px;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: 60px;
+    padding: 10px;
+  }
+
+  .sidebar__header {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    height: 100%;
+    justify-content: start;
+    align-items: center;
+    background-color: var(--background-gray-white);
+    text-align: left;
+  }
+
+  .sidebar__body {
+    display: none;
+  }
+
+}
+
+@media (min-width: 1280px) {
+  :root {
+    font-size: 20px;
+  }
 }
