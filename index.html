@@ -25,15 +25,16 @@
 <body class="layout" id="top">
   <div class="sidebar">
     <header class="sidebar__header">
-      <div class="sidebar__menu-icon">
+      <label class="sidebar__menu-icon" for="sidebar-menu-toggle">
         <img class="sidebar__icon" src="assets/icons/menu-icon.svg" alt="Ícono menú" width="20" height="20">
-      </div>
+      </label>
       <div class="sidebar__app-logo">
         <img class="sidebar__app-icon" src="assets/img/unitasks-logo.png" alt="Logo UniTasks" width="30" height="30">
         <span class="sidebar__app-name">UniTasks</span>
       </div>
     </header>
 
+    <input class="sidebar__menu-toggle" id="sidebar-menu-toggle" type="checkbox">
     <aside class="sidebar__body">
       <div class="separator-line"></div>
       <div class="sidebar__user-profile">
@@ -93,6 +94,7 @@
 
     <main class="tasks__content">
       <div class="subjects-menu">
+        <button>Todas</button>
         <button>Materia 1</button>
         <button>Materia 2</button>
         <button>Materia 3</button>
