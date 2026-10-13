@@ -75,6 +75,10 @@ ul {
   text-align: left;
 }
 
+.sidebar__menu-toggle {
+  display: none;
+}
+
 .sidebar__navbar {
   display: flex;
   flex-direction: column;
@@ -174,12 +178,15 @@ ul {
 .tasks__header {
   display: flex;
   flex-direction: row;
-  justify-content: space-between
+  justify-content: space-between;
+  gap: 12px;
 }
 
-.tasks__header__left-elements {
+.tasks__header_left-elements {
   display: flex;
+  flex: 1;
   flex-direction: column;
+  min-width: 0;
 }
 
 .tasks__summary {
@@ -190,7 +197,7 @@ ul {
 .tasks__title-box {
   display: inline-block;
   vertical-align: middle;
-  width: 49%;
+  width: auto;
   margin: 0px;
   font-size: 1.3rem;
   font-weight: 500;
@@ -198,6 +205,7 @@ ul {
 
 .new-task-button {
   display: inline-flex;
+  flex: 0 0 auto;
   align-items: center;
   justify-content: center;
   gap: 8px;
@@ -239,9 +247,10 @@ ul {
 .tasks__content {
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: stretch;
   justify-content: center;
   gap: 15px;
+  width: 100%;
 }
 
 .subjects-menu {
@@ -287,15 +296,16 @@ ul {
 }
 
 .tasks__list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--card-spacing);
+  width: 100%;
 }
 
 .task-card {
   display: flex;
-  flex: 0 1 30%;
-  min-width: var(--task-card-width);
+  min-width: 0;
+  max-width: 100%;
   height: var(--task-card-height);
   background-color: transparent;
   border: 1px solid #d7e0eb;
@@ -580,11 +590,7 @@ ul {
 
 /* MEDIA QUERIES */
 
-@media (max-width: 767px) {
-  :root {
-    --task-card-width: 95vw;
-  }
-
+@media (max-width: 767px) {/* Mobiles */
   .layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
@@ -597,6 +603,8 @@ ul {
   }
 
   .sidebar {
+    position: relative;
+    z-index: 1;
     width: 100%;
     height: 60px;
     padding: 10px;
@@ -615,15 +623,41 @@ ul {
 
   .sidebar__body {
     display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 2;
+    width: 250px;
+    max-width: calc(100vw - 20px);
+    padding: 10px;
+    background-color: var(--background-gray-white);
+    box-shadow: 0 4px 12px #00000020;
+  }
+
+  .sidebar__menu-icon {
+    cursor: pointer;
+  }
+
+  .sidebar__menu-toggle:checked + .sidebar__body {
+    display: block;
+  }
+
+  .tasks__list {
+    grid-template-columns: 1fr;
+  }
+
+  .new-task-button {
+    flex: 0 0 39px;
+    width: 39px;
+    height: 39px;
+    padding: 0;
+    gap: 0;
+    font-size: 0;
+    line-height: 0;
   }
 }
 
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  :root {
-    --task-card-width: 95vw;
-  }
-
+@media (min-width: 768px) and (max-width: 1023px) {/* Tablets */
   .layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
@@ -636,6 +670,8 @@ ul {
   }
 
   .sidebar {
+    position: relative;
+    z-index: 1;
     width: 100%;
     height: 60px;
     padding: 10px;
@@ -654,12 +690,54 @@ ul {
 
   .sidebar__body {
     display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 2;
+    width: 250px;
+    max-width: calc(100vw - 20px);
+    padding: 10px;
+    background-color: var(--background-gray-white);
+    box-shadow: 0 4px 12px #00000020;
+  }
+
+  .sidebar__menu-icon {
+    cursor: pointer;
+  }
+
+  .sidebar__menu-toggle:checked + .sidebar__body {
+    display: block;
   }
 
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 603px) {/* Columnas de tareas según el espacio disponible */
+  .tasks__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 889px) {
+  .tasks__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .tasks__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1140px) {
+  .tasks__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1600px) {/* Desktops */
   :root {
     font-size: 20px;
   }
+
 }
