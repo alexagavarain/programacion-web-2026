@@ -63,7 +63,7 @@ ul {
 }
 
 .sidebar__app-name {
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 0.9rem + 0.6vw, 1.3rem);
   font-weight: 500;
   vertical-align: middle;
 }
@@ -199,7 +199,7 @@ ul {
   vertical-align: middle;
   width: auto;
   margin: 0px;
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 0.9rem + 0.6vw, 1.3rem);
   font-weight: 500;
 }
 
