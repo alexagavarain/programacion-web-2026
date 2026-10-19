@@ -217,11 +217,11 @@ ul {
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
+  gap: 6px;
 }
 
 .sidebar__navbar-item {
   display: block;
-  margin: 3px;
   border-radius: 5px;
   padding: 5px;
   width: 100%;
