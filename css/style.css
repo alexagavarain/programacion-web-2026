@@ -161,6 +161,12 @@ ul {
   }
 }
 
+.sidebar__navbar__secondary-link {
+  font-size: 0.8rem;
+  color: var(--secondary-blue-gray);
+  text-decoration: underline;
+}
+
 .sidebar__icon {
   margin-right: 10px;
   width: min(100%, 14px);
