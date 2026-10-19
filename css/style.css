@@ -63,7 +63,7 @@ ul {
 }
 
 .sidebar__app-name {
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 0.9rem + 0.6vw, 1.3rem);
   font-weight: 500;
   vertical-align: middle;
 }
@@ -92,7 +92,7 @@ ul {
   border-radius: 5px;
   padding: 5px;
   width: 100%;
-  transition: all 0.3s;
+  transition: background-color 0.3s ease;
 
   &:hover {
     background-color: var(--secondary-gray);
@@ -199,7 +199,7 @@ ul {
   vertical-align: middle;
   width: auto;
   margin: 0px;
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 0.9rem + 0.6vw, 1.3rem);
   font-weight: 500;
 }
 
@@ -217,7 +217,7 @@ ul {
   color: white;
   border-radius: 7px;
   border: 1px solid transparent;
-  transition: backgroud-color 0.3s;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 
   &:hover {
     background-color: #F1F5FF;
@@ -266,7 +266,7 @@ ul {
   border-radius: 50px;
   padding: 3px 10px;
   font-size: 0.9rem;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease, color 0.3s ease;
 
   &:hover {
     background-color: rgb(83, 164, 121);
@@ -274,6 +274,7 @@ ul {
     cursor: pointer;
   }
 }
+
 
 .tasks__status-title {
   display: inline-block;
@@ -377,6 +378,18 @@ ul {
   gap: 4px;
 }
 
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-12px) scale(1.15);
+  }
+}
+
 .back-to-top {
   position: fixed;
   bottom: 24px;
@@ -393,13 +406,14 @@ ul {
   color: white;
   border: 1px solid transparent;
   border-radius: 50px;
-  transition: all 0.5s;
+  transition: all 0.5s ease;
 
   &:hover {
     background-color: #F1F5FF;
     transform: translateY(-10px) scale(1.009) rotateY(180deg);
     border-color: var(--primary-blue);
     color: var(--primary-blue);
+    animation: bounce 0.6s ease-in-out 1;
   }
 }
 
@@ -439,7 +453,7 @@ ul {
   color: white;
   border-radius: 13px;
   border: 1px solid transparent;
-  transition: all 0.3s;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 
   &:hover {
     background-color: #F1F5FF;
@@ -472,16 +486,18 @@ ul {
   padding: 5px 0px;
   border: 1px solid var(--secondary-gray);
   border-radius: 4px;
+  outline: 3px solid transparent;
   text-align: start;
   padding: 5px 10px;
   margin-bottom: 20px;
+  transition: border-color 0.2s ease, outline-color 0.2s ease;
 
   &:focus {
     border-color: var(--primary-blue);
   }
 
   &:focus-visible {
-    outline: 3px solid var(--primary-blue);
+    outline-color: var(--primary-blue);
   }
 }
 
@@ -527,6 +543,7 @@ ul {
   padding: 5px 0px;
   border: 1px solid var(--secondary-gray);
   border-radius: 4px;
+  outline: 3px solid transparent;
   text-align: start;
   padding: 5px 10px;
   margin-bottom: 20px;
@@ -536,7 +553,7 @@ ul {
   }
 
   &:focus-visible {
-    outline: 3px solid var(--primary-blue);
+    outline-color: var(--primary-blue);
   }
 }
 
@@ -550,7 +567,7 @@ ul {
   color: white;
   border-radius: 13px;
   border: 1px solid transparent;
-  transition: all 0.3s;
+  transition: border-color 0.2s ease, outline-color 0.2s ease;
 }
 
 #new-task-cancel {
@@ -561,7 +578,7 @@ ul {
   border-radius: 20px;
   padding: 5px 20px;
   margin-right: 20px;
-  transition: all 0.3s;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 
   &:hover {
     background-color: var(--secondary-blue-gray);
@@ -578,7 +595,7 @@ ul {
   border: 1px solid transparent;
   border-radius: 20px;
   padding: 5px 20px;
-  transition: all 0.3s;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 
   &:hover {
     background-color: #F1F5FF;
