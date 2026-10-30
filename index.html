@@ -86,7 +86,7 @@
     <header class="tasks__header">
       <div class="tasks__header_left-elements">
         <h1 class="tasks__title-box">Tareas</h1>
-        <p class="tasks__summary">5 pendientes • 5 completadas</p>
+        <p class="tasks__summary"></p>
       </div>
       <button class="new-task-button" id="new-task-button" type="button"
         onclick="window.location.href='pages/new-task.html'">
@@ -99,214 +99,27 @@
     </header>
 
     <main class="tasks__content">
-      <div class="subjects-menu">
-        <button>Todas</button>
-        <button>Materia 1</button>
-        <button>Materia 2</button>
-        <button>Materia 3</button>
-      </div>
+      <div class="subjects-menu"></div>
       <section id="pending-tasks">
         <div class="pending-tasks__title">
           <img class="tasks__status-dot" src="assets/icons/pending-tasks-dot.svg" alt="Ícono tareas pendientes"
             width="5" height="5">
-          <h2 class="tasks__status-title">Pendientes (5)</h2>
+          <h2 id="pending-tasks__title-txt" class="tasks__status-title"></h2>
         </div>
 
-        <div class="tasks__list">
-          <article class="task-card">
-            <div class="task-card__color"></div>
-            <div class="task-card__content">
-              <img class="task-card__check" src="assets/icons/pending-check-icon.svg" alt="Check desmarcado" width="18"
-                height="18">
-              <div class="task-card__data">
-                <h3 class="task-card__title">Título de la tarea</h3>
-                <img class="task-card__edit-icon" src="assets/icons/edit-icon.svg" alt="Editar tarea" width="12"
-                  height="12">
-                <p class="task-card__description">Descripción de la tarea</p>
-                <span class="task-card__subject">Materia</span>
-                <span class="task-card__date-info">
-                  <img src="assets/icons/date-icon.svg" alt="Fecha de la tarea" width="12" height="12">
-                  <p class="task-card__date">00/00/00</p>
-                </span>
-              </div>
-            </div>
-          </article>
-          <article class="task-card">
-            <div class="task-card__color"></div>
-            <div class="task-card__content">
-              <img class="task-card__check" src="assets/icons/pending-check-icon.svg" alt="Check desmarcado" width="18"
-                height="18">
-              <div class="task-card__data">
-                <h3 class="task-card__title">Título de la tarea</h3>
-                <img class="task-card__edit-icon" src="assets/icons/edit-icon.svg" alt="Editar tarea" width="12"
-                  height="12">
-                <p class="task-card__description">Descripción de la tarea</p>
-                <span class="task-card__subject">Materia</span>
-                <span class="task-card__date-info">
-                  <img src="assets/icons/date-icon.svg" alt="Fecha de la tarea" width="12" height="12">
-                  <p class="task-card__date">00/00/00</p>
-                </span>
-              </div>
-            </div>
-          </article>
-          <article class="task-card">
-            <div class="task-card__color"></div>
-            <div class="task-card__content">
-              <img class="task-card__check" src="assets/icons/pending-check-icon.svg" alt="Check desmarcado" width="18"
-                height="18">
-              <div class="task-card__data">
-                <h3 class="task-card__title">Título de la tarea</h3>
-                <img class="task-card__edit-icon" src="assets/icons/edit-icon.svg" alt="Editar tarea" width="12"
-                  height="12">
-                <p class="task-card__description">Descripción de la tarea</p>
-                <span class="task-card__subject">Materia</span>
-                <span class="task-card__date-info">
-                  <img src="assets/icons/date-icon.svg" alt="Fecha de la tarea" width="12" height="12">
-                  <p class="task-card__date">00/00/00</p>
-                </span>
-              </div>
-            </div>
-          </article>
-          <article class="task-card">
-            <div class="task-card__color"></div>
-            <div class="task-card__content">
-              <img class="task-card__check" src="assets/icons/pending-check-icon.svg" alt="Check desmarcado" width="18"
-                height="18">
-              <div class="task-card__data">
-                <h3 class="task-card__title">Título de la tarea</h3>
-                <img class="task-card__edit-icon" src="assets/icons/edit-icon.svg" alt="Editar tarea" width="12"
-                  height="12">
-                <p class="task-card__description">Descripción de la tarea</p>
-                <span class="task-card__subject">Materia</span>
-                <span class="task-card__date-info">
-                  <img src="assets/icons/date-icon.svg" alt="Fecha de la tarea" width="12" height="12">
-                  <p class="task-card__date">00/00/00</p>
-                </span>
-              </div>
-            </div>
-          </article>
-          <article class="task-card">
-            <div class="task-card__color"></div>
-            <div class="task-card__content">
-              <img class="task-card__check" src="assets/icons/pending-check-icon.svg" alt="Check desmarcado" width="18"
-                height="18">
-              <div class="task-card__data">
-                <h3 class="task-card__title">Título de la tarea</h3>
-                <img class="task-card__edit-icon" src="assets/icons/edit-icon.svg" alt="Editar tarea" width="12"
-                  height="12">
-                <p class="task-card__description">Descripción de la tarea</p>
-                <span class="task-card__subject">Materia</span>
-                <span class="task-card__date-info">
-                  <img src="assets/icons/date-icon.svg" alt="Fecha de la tarea" width="12" height="12">
-                  <p class="task-card__date">00/00/00</p>
-                </span>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
+        <div id="pending-tasks__list" class="tasks__list"></div>
 
-      <section id="completed-tasks">
-        <div class="completed-tasks__title">
-          <img class="tasks__status-dot" src="assets/icons/completed-tasks-dot.svg" alt="Ícono tareas completadas"
-            width="5" height="5">
-          <h2 class="tasks__status-title">Completadas (5)</h2>
-        </div>
+        <section id="completed-tasks">
+          <div class="completed-tasks__title">
+            <img class="tasks__status-dot" src="assets/icons/completed-tasks-dot.svg" alt="Ícono tareas completadas"
+              width="5" height="5">
+            <h2 id="completed-tasks__title-txt" class="tasks__status-title"></h2>
+          </div>
 
-        <div class="tasks__list">
-          <article class="task-card">
-            <div class="task-card__color"></div>
-            <div class="task-card__content">
-              <img class="task-card__check" src="assets/icons/completed-check-icon.svg" alt="Check marcado" width="18"
-                height="18">
-              <div class="task-card__data">
-                <h3 class="task-card__title">Título de la tarea</h3>
-                <img class="task-card__edit-icon" src="assets/icons/edit-icon.svg" alt="Editar tarea" width="12"
-                  height="12">
-                <p class="task-card__description">Descripción de la tarea</p>
-                <span class="task-card__subject">Materia</span>
-                <span class="task-card__date-info">
-                  <img src="assets/icons/date-icon.svg" alt="Fecha de la tarea" width="12" height="12">
-                  <p class="task-card__date">00/00/00</p>
-                </span>
-              </div>
-            </div>
-          </article>
-          <article class="task-card">
-            <div class="task-card__color"></div>
-            <div class="task-card__content">
-              <img class="task-card__check" src="assets/icons/completed-check-icon.svg" alt="Check marcado" width="18"
-                height="18">
-              <div class="task-card__data">
-                <h3 class="task-card__title">Título de la tarea</h3>
-                <img class="task-card__edit-icon" src="assets/icons/edit-icon.svg" alt="Editar tarea" width="12"
-                  height="12">
-                <p class="task-card__description">Descripción de la tarea</p>
-                <span class="task-card__subject">Materia</span>
-                <span class="task-card__date-info">
-                  <img src="assets/icons/date-icon.svg" alt="Fecha de la tarea" width="12" height="12">
-                  <p class="task-card__date">00/00/00</p>
-                </span>
-              </div>
-            </div>
-          </article>
-          <article class="task-card">
-            <div class="task-card__color"></div>
-            <div class="task-card__content">
-              <img class="task-card__check" src="assets/icons/completed-check-icon.svg" alt="Check marcado" width="18"
-                height="18">
-              <div class="task-card__data">
-                <h3 class="task-card__title">Título de la tarea</h3>
-                <img class="task-card__edit-icon" src="assets/icons/edit-icon.svg" alt="Editar tarea" width="12"
-                  height="12">
-                <p class="task-card__description">Descripción de la tarea</p>
-                <span class="task-card__subject">Materia</span>
-                <span class="task-card__date-info">
-                  <img src="assets/icons/date-icon.svg" alt="Fecha de la tarea" width="12" height="12">
-                  <p class="task-card__date">00/00/00</p>
-                </span>
-              </div>
-            </div>
-          </article>
-          <article class="task-card">
-            <div class="task-card__color"></div>
-            <div class="task-card__content">
-              <img class="task-card__check" src="assets/icons/completed-check-icon.svg" alt="Check marcado" width="18"
-                height="18">
-              <div class="task-card__data">
-                <h3 class="task-card__title">Título de la tarea</h3>
-                <img class="task-card__edit-icon" src="assets/icons/edit-icon.svg" alt="Editar tarea" width="12"
-                  height="12">
-                <p class="task-card__description">Descripción de la tarea</p>
-                <span class="task-card__subject">Materia</span>
-                <span class="task-card__date-info">
-                  <img src="assets/icons/date-icon.svg" alt="Fecha de la tarea" width="12" height="12">
-                  <p class="task-card__date">00/00/00</p>
-                </span>
-              </div>
-            </div>
-          </article>
-          <article class="task-card">
-            <div class="task-card__color"></div>
-            <div class="task-card__content">
-              <img class="task-card__check" src="assets/icons/completed-check-icon.svg" alt="Check marcado" width="18"
-                height="18">
-              <div class="task-card__data">
-                <h3 class="task-card__title">Título de la tarea</h3>
-                <img class="task-card__edit-icon" src="assets/icons/edit-icon.svg" alt="Editar tarea" width="12"
-                  height="12">
-                <p class="task-card__description">Descripción de la tarea</p>
-                <span class="task-card__subject">Materia</span>
-                <span class="task-card__date-info">
-                  <img src="assets/icons/date-icon.svg" alt="Fecha de la tarea" width="12" height="12">
-                  <p class="task-card__date">00/00/00</p>
-                </span>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
-    </main>
+          <div id="completed-tasks__list" class="tasks__list"></div>
+  </div>
+  </section>
+  </main>
   </div>
 
   <footer class="footer">

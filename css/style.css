@@ -28,7 +28,8 @@
   --green: rgb(83, 164, 121);
   --mint-green: rgb(192, 255, 221);
   --translucent-gray: rgba(128, 128, 128, 0.175);
-  --shadow-black-3: #00000008;/* shadows: the number is the opacity % */
+  --shadow-black-3: #00000008;
+  /* shadows: the number is the opacity % */
   --shadow-black-6: rgba(0, 0, 0, 0.058);
   --shadow-black-13: #00000020;
 
@@ -43,7 +44,8 @@
   --light-green: rgb(111, 209, 156);
   --dark-green: rgb(31, 61, 46);
   --translucent-white: rgba(255, 255, 255, 0.12);
-  --shadow-black-40: #00000066;/* shadows: the number is the opacity % */
+  --shadow-black-40: #00000066;
+  /* shadows: the number is the opacity % */
   --shadow-black-50: rgba(0, 0, 0, 0.5);
   --shadow-black-60: #00000099;
 
@@ -75,7 +77,8 @@
 }
 
 /* DARK MODE */
-.dark {/* JS toggles this class on body with classList.toggle("dark") */
+.dark {
+  /* JS toggles this class on body with classList.toggle("dark") */
   color-scheme: dark;
   --color-background: var(--dark-navy);
   --color-background-secondary: var(--dark-gray);
@@ -452,22 +455,9 @@ ul {
   font-weight: normal;
 }
 
-.task-card__date {
-  display: inline-block;
-  margin: 0px;
-}
-
-.task-card__subject {
-  background-color: var(--color-subject-background);
-  color: var(--color-subject);
-  border-radius: 20px;
-  border: none;
-  padding: 3px 10px;
-  margin: 0;
-  flex: 0 0 auto;
-}
-
 .task-card__check {
+  width: 18px;
+  height: 18px;
   flex: 0 0 18px;
   margin-right: 10px;
 }
@@ -486,13 +476,44 @@ ul {
 }
 
 .task-card__edit-icon {
+  width: 12px;
+  height: 12px;
   flex: 0 0 12px;
+}
+
+.task-card__south-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin-bottom: 2%;
+  width: 100%;
 }
 
 .task-card__date-info {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.task-card__date-icon {
+  width: 12px;
+  height: 12px;
+}
+
+.task-card__date {
+  display: inline-block;
+  margin: 0px;
+  color: var(--secondary-blue-gray);
+}
+
+.task-card__subject {
+  background-color: var(--color-subject-background);
+  color: var(--color-subject);
+  border-radius: 20px;
+  border: none;
+  padding: 3px 10px;
+  margin: 0;
+  flex: 0 0 auto;
 }
 
 /* --- Register Form --- */
