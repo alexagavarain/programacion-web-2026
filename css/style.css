@@ -14,7 +14,7 @@
    ========================================================================== */
 
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
 
   /* BASE COLORS: LIGHT */
   --primary-blue: #2563E1;
@@ -74,25 +74,25 @@
   --font-size: 16px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: var(--dark-navy);
-    --color-background-secondary: var(--dark-gray);
-    --color-text: var(--white);
-    --color-text-secondary: var(--light-blue-gray);
-    --color-primary: var(--light-blue);
-    --color-border: var(--charcoal-gray);
-    --color-hover-background: var(--slate-gray);
-    --color-card-border: var(--slate-gray);
-    --color-footer-background: var(--dark-gray);
-    --color-separator: var(--translucent-white);
-    --color-link: var(--light-link-blue);
-    --color-subject: var(--light-green);
-    --color-subject-background: var(--dark-green);
-    --color-card-shadow: var(--shadow-black-40);
-    --color-form-shadow: var(--shadow-black-50);
-    --color-menu-shadow: var(--shadow-black-60);
-  }
+/* DARK MODE */
+.dark {/* JS toggles this class on body with classList.toggle("dark") */
+  color-scheme: dark;
+  --color-background: var(--dark-navy);
+  --color-background-secondary: var(--dark-gray);
+  --color-text: var(--white);
+  --color-text-secondary: var(--light-blue-gray);
+  --color-primary: var(--light-blue);
+  --color-border: var(--charcoal-gray);
+  --color-hover-background: var(--slate-gray);
+  --color-card-border: var(--slate-gray);
+  --color-footer-background: var(--slate-gray);
+  --color-separator: var(--translucent-white);
+  --color-link: var(--light-link-blue);
+  --color-subject: var(--light-green);
+  --color-subject-background: var(--dark-green);
+  --color-card-shadow: var(--shadow-black-40);
+  --color-form-shadow: var(--shadow-black-50);
+  --color-menu-shadow: var(--shadow-black-60);
 }
 
 
@@ -185,9 +185,13 @@ ul {
    ========================================================================== */
 
 /* --- Sidebar --- */
+.sidebar__header {
+  display: flex;
+  align-items: center;
+}
+
 .sidebar__app-logo {
-  display: inline-block;
-  width: 84%;
+  flex: 1;
   text-align: center;
 }
 
@@ -203,13 +207,27 @@ ul {
 
 .sidebar__menu-icon {
   display: inline-block;
+  flex: 0 0 auto;
   vertical-align: middle;
   width: 8%;
+  padding: 0;
+  background-color: transparent;
+  border: none;
   text-align: left;
+  cursor: pointer;
 }
 
-.sidebar__menu-toggle {
-  display: none;
+.theme-button {
+  flex: 0 0 auto;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.theme-button__icon {
+  width: 14px;
+  vertical-align: top;
 }
 
 .sidebar__navbar {
@@ -739,7 +757,7 @@ ul {
     cursor: pointer;
   }
 
-  .sidebar__menu-toggle:checked+.sidebar__body {
+  .sidebar__body--open {
     display: block;
   }
 
@@ -816,7 +834,7 @@ ul {
     cursor: pointer;
   }
 
-  .sidebar__menu-toggle:checked+.sidebar__body {
+  .sidebar__body--open {
     display: block;
   }
 }
