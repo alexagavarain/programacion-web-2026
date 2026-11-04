@@ -32,31 +32,41 @@
   </header>
 
   <main class="register__main">
-    <h1 class="register__title">Registro</h1>
-    <form id="register-form" action="/registrar-usuario" method="POST" enctype="multipart/form-data" novalidate>
-      <fieldset class="register__form-container">
+    <h1 class="form-title">Registro</h1>
+    <form id="register-form" action="/register-user" method="POST" enctype="multipart/form-data" novalidate>
+      <fieldset class="form-container">
 
-        <div class="register__input-field">
-          <label class="register__form-label" for="inp-usuario">Nombre completo</label>
-          <input class="register__long-form-input" autofocus required type="text" name="full_name"
-            id="inp-usuario" placeholder="Nombre Apellido(s)">
+        <div class="input-field">
+          <label class="form-label" for="inp-name">Nombre(s)</label>
+          <input class="long-form-input" autofocus required minlength="3" type="text" name="name" id="inp-usuario"
+            placeholder="Nombre(s)">
+          <span class="field-error" data-error-para="name"></span>
         </div>
 
-        <div class="register__input-field">
-          <label class="register__form-label" for="inp-email">Correo electrónico</label>
-          <input class="register__long-form-input" required type="email" name="email" id="inp-email"
+        <div class="input-field">
+          <label class="form-label" for="inp-lastname">Apellidos</label>
+          <input class="long-form-input" autofocus required minlength="3" type="text" name="last-name" id="inp-usuario"
+            placeholder="Primer apellido Segundo apellido">
+          <span class="field-error" data-error-para="last-name"></span>
+        </div>
+
+        <div class="input-field">
+          <label class="form-label" for="inp-email">Correo electrónico</label>
+          <input class="long-form-input" required type="email" name="email" id="inp-email"
             placeholder="estudiante@alu.uabcs.mx">
+          <span class="field-error" data-error-para="email"></span>
         </div>
 
-        <div class="register__input-field">
-          <label class="register__form-label" for="inp-password">Contraseña</label>
-          <input class="register__long-form-input" required type="password" name="password" id="inp-password"
+        <div class="input-field">
+          <label class="form-label" for="inp-password">Contraseña</label>
+          <input class="long-form-input" required minlength="8" type="password" name="password" id="inp-password"
             placeholder="Ingresa tu contraseña">
+          <span class="field-error" data-error-para="password"></span>
         </div>
 
-        <div class="register__input-field">
-          <label class="register__form-label" for="sel-career">Carrera</label>
-          <select class="register__long-form-input" required id="sel-career" name="career">
+        <div class="input-field">
+          <label class="form-label" for="sel-career">Carrera</label>
+          <select class="long-form-input" required id="sel-career" name="career">
             <option value="Ingenieria en Desarrollo de Software" selected>IDS</option>
             <option value="Ingeniería en Tecnologías Computacionales">ITC</option>
             <option value="Ingeniería en Ciberseguridad">IC</option>
@@ -64,9 +74,9 @@
           </select>
         </div>
 
-        <div class="register__input-field">
-          <label class="register__form-label" for="sel-semester">Semestre</label>
-          <select class="register__long-form-input" required id="sel-semester" name="semester">
+        <div class="input-field">
+          <label class="form-label" for="sel-semester">Semestre</label>
+          <select class="long-form-input" required id="sel-semester" name="semester">
             <option value="1" selected>1</option>
             <option value="3">3</option>
             <option value="5">5</option>
@@ -75,16 +85,16 @@
           </select>
         </div>
 
-        <div class="register__input-field">
-          <label class="register__form-label" for="sel-group">Grupo</label>
-          <select class="register__long-form-input" required id="sel-group" name="group">
+        <div class="input-field">
+          <label class="form-label" for="sel-group">Grupo</label>
+          <select class="long-form-input" required id="sel-group" name="group">
             <option value="A" selected>A</option>
             <option value="B">B</option>
           </select>
         </div>
 
         <div class="register__radio-field">
-          <label class="register__form-label">Turno</label>
+          <label class="form-label">Turno</label>
           <span class="register__radio-input">
             <label for="rad-matutino">Matutino</label>
             <input type="radio" id="rad-matutino" name="shift" value="M" checked>
@@ -95,15 +105,20 @@
           </span>
         </div>
 
+
       </fieldset>
 
       <div>
         <button id="register-button" type="submit">Registrarme</button>
       </div>
-
     </form>
+    <div id="success-message" class="success-message hidden" role="status">
+      Tu cuenta ha sido registrada
+    </div>
+
+
   </main>
-  <script src="../js/register.js"></script>
+  <script type="module" src="../js/register.js"></script>
 </body>
 
 </html>

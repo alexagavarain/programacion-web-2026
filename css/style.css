@@ -524,6 +524,7 @@ ul {
   display: flex;
   align-items: center;
   padding: 16px;
+  width: 100%;
   background-color: var(--color-background-secondary);
 }
 
@@ -545,23 +546,29 @@ ul {
 /* --- Register Form --- */
 .register__body {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .register__main {
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 }
 
-.register__title {
+.form__title {
   font-weight: bold;
   font-size: 1.5rem;
   text-align: center;
-  margin-top: 30px;
-  margin-bottom: 20px;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-.register__form-container {
+.form-container {
   display: inline-block;
-  width: 400px;
+  width: 100%;
   background-color: var(--color-background-secondary);
   border: 1px solid var(--color-border);
   border-radius: 20px;
@@ -569,21 +576,28 @@ ul {
   padding: 30px 20px;
 }
 
-.register__form-label {
+.form-label {
   display: block;
   text-align: left;
   margin-bottom: 7px;
   padding-left: 4px;
 }
 
-.register__long-form-input {
+.input-field {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-bottom: 1rem;
+}
+
+.long-form-input {
   width: 100%;
   border: 1px solid var(--color-border);
   border-radius: 4px;
   outline: 3px solid transparent;
   text-align: start;
   padding: 5px 10px;
-  margin-bottom: 20px;
+  margin-bottom: 3px;
   transition: border-color 0.2s ease, outline-color 0.2s ease;
 
   &:focus {
@@ -600,9 +614,10 @@ ul {
 }
 
 #register-button {
-  margin: 20px;
-  width: 32%;
+  margin-top: 0.7rem;
+  margin-bottom: 1rem;
   height: 40px;
+  width: 100%;
   font-size: 1rem;
   font-weight: 400;
   background-color: var(--color-primary);
@@ -619,6 +634,29 @@ ul {
   }
 }
 
+.field-error {
+  color: red;
+  font-size: 0.8rem;
+  margin-left: 4px;
+}
+
+.invalid {
+  border: 1px solid red;
+}
+
+.success-message {
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  margin-top: 0.7rem;
+  background-color: #d1e7dd;
+  color: #0f5132;
+  border: 1px solid #badbcc;
+  border-radius: 6px;
+  font-weight: 500;
+  text-align: center;
+}
+
 /* --- New Task Modal --- */
 .new-task__body {
   text-align: center;
@@ -626,49 +664,9 @@ ul {
 
 .new-task__main {
   padding: 16px;
-}
-
-.new-task__title {
-  font-weight: bold;
-  font-size: 1.5rem;
-  text-align: center;
-  margin-top: 30px;
-  margin-bottom: 20px;
-}
-
-.new-task__modal {
-  display: inline-block;
-  width: 30%;
-  background-color: var(--color-background-secondary);
-  border: 1px solid var(--color-border);
-  border-radius: 10px;
-  padding: 30px 20px;
-  box-shadow: 5px 30px 30px var(--color-form-shadow);
-}
-
-.new-task__form-label {
-  display: block;
-  text-align: left;
-  margin-bottom: 7px;
-  padding-left: 4px;
-}
-
-.new-task__long-form-input {
-  width: 100%;
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  outline: 3px solid transparent;
-  text-align: start;
-  padding: 5px 10px;
-  margin-bottom: 20px;
-
-  &:focus {
-    border-color: var(--color-primary);
-  }
-
-  &:focus-visible {
-    outline-color: var(--color-primary);
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #new-task-cancel {
@@ -743,6 +741,10 @@ ul {
     color: var(--color-primary);
     animation: bounce 0.6s ease-in-out 1;
   }
+}
+
+.hidden {
+  display: none !important;
 }
 
 @keyframes bounce {
@@ -836,7 +838,14 @@ ul {
     padding: 10px;
   }
 
-  .register__form-container {
+  .register__main {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .form-container {
     width: 100%;
   }
 
