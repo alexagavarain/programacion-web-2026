@@ -33,12 +33,12 @@
 
   <main class="register__main">
     <h1 class="register__title">Registro</h1>
-    <form action="/registrar-usuario" method="POST" enctype="multipart/form-data">
+    <form id="register-form" action="/registrar-usuario" method="POST" enctype="multipart/form-data" novalidate>
       <fieldset class="register__form-container">
 
         <div class="register__input-field">
           <label class="register__form-label" for="inp-usuario">Nombre completo</label>
-          <input class="register__long-form-input" autofocus required type="text" name="nombre_usuario"
+          <input class="register__long-form-input" autofocus required type="text" name="full_name"
             id="inp-usuario" placeholder="Nombre Apellido(s)">
         </div>
 
@@ -98,7 +98,7 @@
       </fieldset>
 
       <div>
-        <button id="register-button" type="subdmit">Registrarme</button>
+        <button id="register-button" type="submit">Registrarme</button>
       </div>
 
     </form>

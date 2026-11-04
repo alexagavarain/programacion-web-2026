@@ -37,7 +37,7 @@
 
   <main class="new-task__main">
     <div class="new-task__modal">
-      <form action="/process-task" method="GET">
+      <form id="new-task-form" action="/process-task" method="GET" novalidate>
         <div>
           <label class="new-task__form-label" for="task-title">Título</label>
           <input class="new-task__long-form-input" autofocus required type="text" id="task-title" name="title"
@@ -75,7 +75,7 @@
 
         <div>
           <button id="new-task-cancel" type="reset">Cancelar</button>
-          <button id="new-task-save" itype="submit">Guardar</button>
+          <button id="new-task-save" type="submit">Guardar</button>
         </div>
       </form>
     </div>
