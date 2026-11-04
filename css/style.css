@@ -143,11 +143,13 @@ ul {
 .layout {
   display: grid;
   grid-template-columns: 220px 1fr;
+  grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "sidebar  header"
     "sidebar main"
     "footer   footer";
   gap: 0 30px;
+  min-height: 100vh;
 }
 
 .sidebar {
@@ -229,7 +231,7 @@ ul {
 }
 
 .theme-button__icon {
-  width: 14px;
+  width: 17px;
   vertical-align: top;
 }
 
@@ -256,7 +258,7 @@ ul {
 
 .sidebar__navbar__secondary-link {
   font-size: 0.8rem;
-  color: var(--secondary-blue-gray);
+  color: var(--color-text-secondary);
   text-decoration: underline;
 }
 
@@ -294,8 +296,9 @@ ul {
   display: block;
   color: var(--color-link);
   text-decoration-line: underline;
-  text-align: center;
+  text-align: left;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 /* --- Tasks & Header --- */
@@ -516,9 +519,36 @@ ul {
   flex: 0 0 auto;
 }
 
+/* --- Page Header --- */
+.page-header {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background-color: var(--color-background-secondary);
+}
+
+.page-header__app-logo {
+  flex: 1;
+  text-align: center;
+}
+
+.page-header__app-icon {
+  vertical-align: middle;
+}
+
+.page-header__app-name {
+  font-size: clamp(1rem, 0.9rem + 0.6vw, 1.3rem);
+  font-weight: 500;
+  vertical-align: middle;
+}
+
 /* --- Register Form --- */
 .register__body {
   text-align: center;
+}
+
+.register__main {
+  padding: 16px;
 }
 
 .register__title {
@@ -592,6 +622,10 @@ ul {
 /* --- New Task Modal --- */
 .new-task__body {
   text-align: center;
+}
+
+.new-task__main {
+  padding: 16px;
 }
 
 .new-task__title {
@@ -734,6 +768,7 @@ ul {
   .layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr auto;
     grid-template-areas:
       "header"
       "sidebar"
@@ -795,6 +830,19 @@ ul {
     font-size: 0;
     line-height: 0;
   }
+
+  .page-header {
+    height: 60px;
+    padding: 10px;
+  }
+
+  .register__form-container {
+    width: 100%;
+  }
+
+  .new-task__modal {
+    width: 100%;
+  }
 }
 
 @media (min-width: 603px) {
@@ -811,6 +859,7 @@ ul {
   .layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr auto;
     grid-template-areas:
       "header"
       "sidebar"
@@ -857,6 +906,15 @@ ul {
 
   .sidebar__body--open {
     display: block;
+  }
+
+  .page-header {
+    height: 60px;
+    padding: 10px;
+  }
+
+  .new-task__modal {
+    width: 60%;
   }
 }
 
