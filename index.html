@@ -89,7 +89,11 @@
         <h1 class="tasks__title-box">Tareas</h1>
         <p class="tasks__summary"></p>
       </div>
-      <button class="new-task-button" id="new-task-button" type="button"
+      <div class="tasks__search-bar-container">
+        <img class="search-icon" src="assets/icons/search-icon.svg" alt="Ícono de búsqueda" width="12" height="">
+        <!-- <input placeholder="Buscar tareas...""> -->
+      </div>
+      <button class=" new-task-button" id="new-task-button" type="button"
         onclick="window.location.href='pages/new-task.html'">
         <img class="new-task-button__icon new-task-button__icon--normal" src="assets/icons/plus-icon.svg"
           alt="Ícono nueva tarea" width="12" height="12">
@@ -128,7 +132,7 @@
   </footer>
   <a class="back-to-top" href="#top">↑</a>
   </div>
-  <script src="./js/index.js"></script>
+  <script type="module" src="./js/index.js"></script>
 </body>
 
 </html>
