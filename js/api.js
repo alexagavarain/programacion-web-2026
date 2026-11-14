@@ -1,5 +1,5 @@
-const TASKS_URL = "../data/tasks.json"
-const SUBJECTS_URL = "../data/subjects.json"
+const TASKS_URL = "./data/tasks.json"
+const SUBJECTS_URL = "./data/subjects.json"
 
 export async function getTasks() {
   try {
