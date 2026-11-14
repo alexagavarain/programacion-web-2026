@@ -63,8 +63,6 @@
   --color-footer-background: var(--light-gray-blue);
   --color-separator: var(--translucent-gray);
   --color-link: var(--link-blue);
-  --color-subject: var(--green);
-  --color-subject-background: var(--mint-green);
   --color-card-shadow: var(--shadow-black-3);
   --color-form-shadow: var(--shadow-black-6);
   --color-menu-shadow: var(--shadow-black-13);
@@ -91,8 +89,6 @@
   --color-footer-background: var(--slate-gray);
   --color-separator: var(--translucent-white);
   --color-link: var(--light-link-blue);
-  --color-subject: var(--light-green);
-  --color-subject-background: var(--dark-green);
   --color-card-shadow: var(--shadow-black-40);
   --color-form-shadow: var(--shadow-black-50);
   --color-menu-shadow: var(--shadow-black-60);
@@ -157,6 +153,7 @@ ul {
   display: inline-block;
   width: max(20%, 250px);
   padding: 16px;
+  padding-top: 24px;
   background-color: var(--color-background-secondary);
   text-align: left;
 }
@@ -166,9 +163,11 @@ ul {
   display: flex;
   flex-direction: column;
   gap: var(--main-container-gap);
-  width: 100%;
+  width: 96%;
+  justify-self: center;
   min-height: 662px;
   padding: 16px;
+  padding-top: 24px;
 }
 
 .footer {
@@ -193,10 +192,12 @@ ul {
 .sidebar__header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .sidebar__app-logo {
-  flex: 1;
+  display: flex;
+  gap: 10px;
   text-align: center;
 }
 
@@ -214,11 +215,11 @@ ul {
   display: inline-block;
   flex: 0 0 auto;
   vertical-align: middle;
-  width: 8%;
+  width: min(100%, 20px);
   padding: 0;
   background-color: transparent;
   border: none;
-  text-align: left;
+  text-align: right;
   cursor: pointer;
 }
 
@@ -321,13 +322,23 @@ ul {
   vertical-align: middle;
   width: auto;
   margin: 0px;
-  font-size: clamp(1rem, 0.9rem + 0.6vw, 1.3rem);
-  font-weight: 500;
+  font-size: clamp(1rem, 0.9rem + 0.6vw, 1.2rem);
+  font-weight: 400;
 }
 
 .tasks__summary {
   margin: 8px 0;
   color: var(--color-text-secondary);
+}
+
+.tasks__search-bar-container {
+  display: flex;
+  justify-content: center;
+  width: 4%;
+  height: 60%;
+  border-radius: 60px;
+  background-color: var(--color-background-secondary);
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.075);
 }
 
 .tasks__status-dot {
@@ -341,6 +352,8 @@ ul {
   font-family: 'Inter', sans-serif;
   text-transform: uppercase;
   font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--secondary-blue-gray);
 }
 
 .tasks__content {
@@ -367,7 +380,7 @@ ul {
   gap: 8px;
   margin: 0px;
   width: 150px;
-  height: 39px;
+  height: 60%;
   font-size: 1rem;
   background-color: var(--color-primary);
   color: var(--color-text-on-primary);
@@ -402,8 +415,8 @@ ul {
   gap: 10px;
 
   button {
-    background-color: var(--color-subject-background);
-    color: var(--color-subject);
+    background-color: color-mix(in srgb, var(--subject-color, #9ca3af) 15%, white);
+    color: var(--subject-color, var(--primary-blue));
     border: none;
     border-radius: 50px;
     padding: 3px 10px;
@@ -411,11 +424,18 @@ ul {
     transition: background-color 0.3s ease, color 0.3s ease;
 
     &:hover {
-      background-color: var(--color-subject);
-      color: var(--color-subject-background);
+      background-color: var(--subject-color, var(--primary-blue));
+      color: color-mix(in srgb, var(--subject-color, #9ca3af) 15%, white);
       cursor: pointer;
     }
   }
+}
+
+.no-tasks-msg {
+  align-self: center;
+  text-align: center;
+  color: var(--secondary-blue-gray);
+  font-size: 0.8rem;
 }
 
 /* --- Task Cards --- */
@@ -432,7 +452,7 @@ ul {
 
   &:hover {
     transform: scale(1.005);
-    border-color: var(--color-subject);
+    border-color: color-mix(in srgb, var(--color-card-border) 80%, rgb(0, 0, 0));
     cursor: pointer;
   }
 }
@@ -442,6 +462,7 @@ ul {
   background-color: var(--color-subject);
   border-radius: 100px 0px 0px 100px;
 }
+
 
 .task-card__content {
   display: flex;
@@ -475,6 +496,7 @@ ul {
 
 .task-card__description {
   flex: 1 0 100%;
+  color: var(--secondary-blue-gray);
   margin: 0;
 }
 
@@ -510,13 +532,24 @@ ul {
 }
 
 .task-card__subject {
-  background-color: var(--color-subject-background);
-  color: var(--color-subject);
+  background-color: color-mix(in srgb, var(--subject-color, #9ca3af) 15%, white);
+  color: var(--subject-color, var(--primary-blue));
   border-radius: 20px;
   border: none;
   padding: 3px 10px;
   margin: 0;
   flex: 0 0 auto;
+}
+
+.load-msg {
+  margin-top: 10%;
+  color: var(--secondary-blue-gray);
+  text-align: center;
+}
+
+.no-tasks-container {
+  width: 100%;
+  height: 100%;
 }
 
 /* --- Page Header --- */
