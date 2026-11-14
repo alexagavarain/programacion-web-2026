@@ -532,6 +532,10 @@ ul {
   color: var(--secondary-blue-gray);
 }
 
+.task-card__date--overdue {
+  color: red;
+}
+
 .task-card__subject {
   background-color: color-mix(in srgb, var(--subject-color, #9ca3af) 15%, white);
   color: var(--subject-color, var(--primary-blue));
@@ -692,8 +696,30 @@ ul {
 }
 
 /* --- New Task Modal --- */
-.new-task__body {
+
+.modal {
+  margin: auto;
+  padding: 0;
+  border: none;
+  border-radius: 20px;
+  background-color: transparent;
+}
+
+.new-task-modal__header {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  margin-bottom: 7%;
+}
+
+.new-task-modal__body {
   text-align: center;
+}
+
+.new-task-modal__title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0;
 }
 
 .new-task__main {
@@ -703,7 +729,25 @@ ul {
   align-items: center;
 }
 
-#new-task-cancel {
+#close-modal-btn {
+  width: 26px;
+  height: 26px;
+  text-align: center;
+  background-color: var(--color-background-secondary);
+  color: var(--color-primary);
+  border: 1px solid var(--color-secondary-button);
+  border-radius: 20px;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    background-color: var(--color-secondary-button);
+    color: var(--color-text-on-primary);
+    border-color: var(--color-secondary-button);
+    cursor: pointer;
+  }
+}
+
+#cancel-modal-btn {
   width: 40%;
   background-color: var(--color-background-secondary);
   color: var(--color-primary);
@@ -721,7 +765,7 @@ ul {
   }
 }
 
-#new-task-save {
+#save-modal-btn {
   width: 40%;
   background-color: var(--color-primary);
   color: var(--color-text-on-primary);
@@ -843,6 +887,11 @@ ul {
     padding: 10px;
     background-color: var(--color-background-secondary);
     box-shadow: 0 4px 12px var(--color-menu-shadow);
+  }
+
+  .sidebar__app-name {
+    display: none;
+    background-color: red;
   }
 
   .sidebar__menu-icon {

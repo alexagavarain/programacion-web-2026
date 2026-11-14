@@ -16,6 +16,12 @@ const themeButton = document.querySelector("#theme-button");
 const subjectsMenu = document.querySelector(".subjects-menu");
 const tasksPageContainer = document.querySelector(".tasks__content");
 
+const newTaskBtn = document.getElementById("new-task-button");
+const newTaskModal = document.getElementById("new-task-modal");
+const newTaskForm = document.getElementById("new-task-form");
+const closeModalBtn = document.getElementById("close-modal-btn");
+const cancelModalBtn = document.getElementById("cancel-modal-btn")
+
 // HAMBURGER MENU
 menuButton.addEventListener("click", () => {
   sidebarBody.classList.toggle("sidebar__body--open");
@@ -40,10 +46,22 @@ subjectsMenu.addEventListener("click", (e) => {
   }
 });
 
+// NEW TASK BUTTON
+newTaskBtn.addEventListener("click", (e) => {
+  newTaskModal.showModal();
+})
+
+closeModalBtn.addEventListener("click", (e) => {
+  newTaskModal.close();
+})
+
+cancelModalBtn.addEventListener("click", (e) => {
+  newTaskModal.close();
+})
+
 tasksPageContainer.addEventListener("click", (e) => {
   const taskCard = e.target.closest(".task-card");
   if (!taskCard) return;
-  console.log("click en la tarea");
 
   //LISTENER DEL CHECKBOX
   const checkbox = e.target.closest(".task-card__check");
@@ -114,6 +132,11 @@ function filterTasksBySubject(subjectId) {
     String(t.subject.id) === String(subjectId)
   );
 
+  if (!subjectTasks.length) {
+    return createEmptyTasksMessage();
+  }
+
+  createTasksLayout();
   resetTasks(subjectTasks);
 }
 

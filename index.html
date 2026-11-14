@@ -91,8 +91,7 @@
         <img class="search-icon" src="assets/icons/search-icon.svg" alt="Ícono de búsqueda" width="12" height="">
         <!-- <input placeholder="Buscar tareas...""> -->
       </div>
-      <button class=" new-task-button" id="new-task-button" type="button"
-        onclick="window.location.href='pages/new-task.html'">
+      <button class="new-task-button" id="new-task-button" type="button">
         <img class="new-task-button__icon new-task-button__icon--normal" src="assets/icons/plus-icon.svg"
           alt="Ícono nueva tarea" width="12" height="12">
         <img class="new-task-button__icon new-task-button__icon--hover" src="assets/icons/plus-icon-blue.svg"
@@ -102,10 +101,63 @@
     </header>
 
     <div class="subjects-menu"></div>
-    <main class="tasks__content">
+    <main class="tasks__content"></main>
   </div>
-  </main>
-  </div>
+
+  <!-- MODAL DE NUEVA TAREA -->
+
+  <dialog id="new-task-modal" class="modal">
+    <form class="form-container" id="new-task-form" action="/create-new-task" method="POST" novalidate>
+      <header class="new-task-modal__header">
+        <h2 class="new-task-modal__title">Nueva tarea</h2>
+        <button class="task-modal__close" id="close-modal-btn" type="button" aria-label="Cerrar modal">✕</button>
+      </header>
+      <div class="new-task-modal__body">
+        <div class="input-field">
+          <label class="form-label" for="task-title">Título</label>
+          <input class="long-form-input" autofocus required type="text" id="task-title" name="title"
+            placeholder="Título de la tarea">
+          <span class="field-error" data-error-para="title"></span>
+        </div>
+
+        <div class="input-field">
+          <label class="form-label" for="task-description">Descripción</label>
+          <textarea class="long-form-input" required id="task-description" name="description" rows="5" cols="40"
+            placeholder="Escribe una descripción..."></textarea>
+        </div>
+
+        <div class="input-field">
+          <label class="form-label" for="task-subject">Materia</label>
+          <select class="long-form-input" required id="task-subject" name="subject">
+            <option value="" selected disabled>Selecciona una materia</option>
+            <option value="database-2">Base de Datos II</option>
+            <option value="web-programming">Programación Web</option>
+            <option value="software-engineering-1">Ingeniería de Software I</option>
+            <option value="user-interface-design">Diseño de Interfaces de Usuario</option>
+            <option value="computation-theory">Teoría de la Computación</option>
+            <option value="networks-1">Redes I</option>
+          </select>
+        </div>
+
+        <div class="input-field">
+          <label class="form-label" for="task-due-date">Fecha de entrega</label>
+          <input class="long-form-input" required type="date" id="task-due-date" name="due_date">
+          <span class="field-error" data-error-para="due_date"></span>
+        </div>
+
+        <div class="input-field">
+          <label class="form-label" for="task-due-time">Hora de entrega</label>
+          <input class="long-form-input" required type="time" id="task-due-time" name="due_time">
+          <span class="field-error" data-error-para="due_time"></span>
+        </div>
+
+        <div>
+          <button id="cancel-modal-btn" type="reset">Cancelar</button>
+          <button id="save-modal-btn" type="submit">Guardar</button>
+        </div>
+      </div>
+    </form>
+  </dialog>
 
   <footer class="footer">
     <p>Software desarrollado por UniTasks®</p>
