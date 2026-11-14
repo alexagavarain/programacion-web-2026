@@ -58,55 +58,37 @@ let userSubjects = [];
 let pendingCount = 0;
 let completedCount = 0;
 
-async function loadSubjects() {
-  const subjectsLoader = createLoadMessage("Cargando materias...")
-  tasksPageContainer.prepend(subjectsLoader);
+async function init() {
+  const loader = createLoadMessage("Cargando tus tareas...");
+  tasksPageContainer.append(loader);
+
   try {
-    userSubjects = await getSubjects();
+    const [subjects, rawTasks] = await Promise.all([
+      getSubjects(),
+      getTasks()
+    ]);
 
-    if (!userSubjects.length) return;
-
-    subjectsLoader.remove();
-  } catch (error) {
-    console.error(error);
-    subjectsLoader.textContent = "No pudimos cargar tus materias";
-  }
-}
-
-async function loadTasks() {
-  const tasksLoader = createLoadMessage("Cargando tareas...")
-  tasksPageContainer.prepend(tasksLoader);
-  try {
-    const rawTasks = await getTasks();
-
-    if (!rawTasks.length) return;
-
+    userSubjects = subjects;
     userTasks = rawTasks.map(task => ({
       ...task,
       subject: userSubjects.find(s => String(s.id) === String(task.subjectId))
     }));
 
-    tasksLoader.remove();
+    loader.remove();
+    createSubjectMenu(userSubjects);
+
+    if (!userTasks.length) {
+      updateTasksCount(0, 0);
+      createEmptyTasksMessage();
+      return;
+    }
+
+    createTasksLayout();
+    resetTasks(userTasks);
   } catch (error) {
     console.error(error);
-    tasksLoader.textContent = "No pudimos cargar tus tareas";
+    loader.textContent = "No pudimos cargar tu información. Intenta de nuevo.";
   }
-}
-
-async function init() {
-  await loadSubjects();
-  await loadTasks();
-
-  createSubjectMenu(userSubjects);
-
-  if (!userTasks.length) {
-    updateTasksCount(0, 0);
-    createEmptyTasksMessage();
-    return;
-  }
-
-  createTasksLayout();
-  resetTasks(userTasks);
 }
 
 function resetTasks(tasks) {
