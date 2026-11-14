@@ -95,7 +95,6 @@ export function createEmptyTasksMessage() {
 
   container.append(msg);
   tasksPageContainer.append(container);
-  console.log(tasksPageContainer);
 }
 
 export function createLoadMessage(content) {
