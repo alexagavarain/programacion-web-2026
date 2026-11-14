@@ -328,6 +328,7 @@ ul {
 
 .tasks__summary {
   margin: 8px 0;
+  height: 1rem;
   color: var(--color-text-secondary);
 }
 

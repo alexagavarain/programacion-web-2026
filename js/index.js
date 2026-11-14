@@ -16,8 +16,6 @@ const themeButton = document.querySelector("#theme-button");
 const subjectsMenu = document.querySelector(".subjects-menu");
 const tasksPageContainer = document.querySelector(".tasks__content");
 
-console.log(tasksPageContainer);
-
 // HAMBURGER MENU
 menuButton.addEventListener("click", () => {
   sidebarBody.classList.toggle("sidebar__body--open");
@@ -75,9 +73,15 @@ async function init() {
     }));
 
     loader.remove();
+
+    if (!subjects.length) {
+      createEmptyTasksMessage();
+      return;
+    }
+
     createSubjectMenu(userSubjects);
 
-    if (!userTasks.length) {
+    if (!userTasks.length || !userSubjects.length) {
       updateTasksCount(0, 0);
       createEmptyTasksMessage();
       return;
