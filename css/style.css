@@ -153,6 +153,7 @@ ul {
   display: inline-block;
   width: max(20%, 250px);
   padding: 16px;
+  padding-top: 24px;
   background-color: var(--color-background-secondary);
   text-align: left;
 }
@@ -162,9 +163,11 @@ ul {
   display: flex;
   flex-direction: column;
   gap: var(--main-container-gap);
-  width: 100%;
+  width: 96%;
+  justify-self: center;
   min-height: 662px;
   padding: 16px;
+  padding-top: 24px;
 }
 
 .footer {
@@ -189,10 +192,12 @@ ul {
 .sidebar__header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .sidebar__app-logo {
-  flex: 1;
+  display: flex;
+  gap: 10px;
   text-align: center;
 }
 
@@ -210,11 +215,11 @@ ul {
   display: inline-block;
   flex: 0 0 auto;
   vertical-align: middle;
-  width: 8%;
+  width: min(100%, 20px);
   padding: 0;
   background-color: transparent;
   border: none;
-  text-align: left;
+  text-align: right;
   cursor: pointer;
 }
 
@@ -317,8 +322,8 @@ ul {
   vertical-align: middle;
   width: auto;
   margin: 0px;
-  font-size: clamp(1rem, 0.9rem + 0.6vw, 1.3rem);
-  font-weight: 500;
+  font-size: clamp(1rem, 0.9rem + 0.6vw, 1.2rem);
+  font-weight: 400;
 }
 
 .tasks__summary {
@@ -347,6 +352,8 @@ ul {
   font-family: 'Inter', sans-serif;
   text-transform: uppercase;
   font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--secondary-blue-gray);
 }
 
 .tasks__content {
@@ -532,6 +539,17 @@ ul {
   padding: 3px 10px;
   margin: 0;
   flex: 0 0 auto;
+}
+
+.load-msg {
+  margin-top: 10%;
+  color: var(--secondary-blue-gray);
+  text-align: center;
+}
+
+.no-tasks-container {
+  width: 100%;
+  height: 100%;
 }
 
 /* --- Page Header --- */

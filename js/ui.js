@@ -1,58 +1,108 @@
-const pendingTasksContainer = document.getElementById("pending-tasks__list");
-const completedTasksContainer = document.getElementById("completed-tasks__list");
-let successTimeoutId = null;
+const tasksPageContainer = document.querySelector(".tasks__content");
 
-export function showError(form, fieldName, message) {
-  const span = form.querySelector(`[data-error-para="${fieldName}"]`);
-  if (span) span.textContent = message;
+let pendingTasksSubtitle = null;
+let completedTasksSubtitle = null;
+let pendingTasksContainer = null;
+let completedTasksContainer = null;
 
-  const field = form.elements[fieldName];
-  if (field) field.classList.add("invalid");
+// CREAR SECCIONES DE TAREAS 
+function createTaskSection({ sectionId, titleContainerClass, dotSrc, dotAlt, titleId, listId }) {
+  const section = document.createElement("section");
+  section.id = sectionId;
+
+  const titleWrapper = document.createElement("div");
+  titleWrapper.classList.add(titleContainerClass);
+
+  const dot = document.createElement("img");
+  dot.classList.add("tasks__status-dot");
+  dot.src = dotSrc;
+  dot.alt = dotAlt;
+  dot.width = 7;
+  dot.height = 7;
+
+  const title = document.createElement("h2");
+  title.id = titleId;
+  title.classList.add("tasks__status-title");
+
+  titleWrapper.append(dot, title);
+
+  const list = document.createElement("div");
+  list.id = listId;
+  list.classList.add("tasks__list");
+
+  section.append(titleWrapper, list);
+
+  return { section, title, list };
 }
 
-export function resetErrors(form) {
-  form.querySelectorAll("[data-error-para]").forEach((span) => (span.textContent = ""));
-  form.querySelectorAll(".invalid").forEach((field) => field.classList.remove("invalid"));
-}
+export function createTasksLayout() {
+  tasksPageContainer.innerHTML = "";
 
-export function resetError(form, fieldName) {
-  const span = form.querySelector(`[data-error-para="${fieldName}"]`);
-  if (span) span.textContent = "";
+  const pending = createTaskSection({
+    sectionId: "pending-tasks",
+    titleContainerClass: "pending-tasks__title",
+    dotSrc: "assets/icons/pending-tasks-dot.svg",
+    dotAlt: "Ícono tareas pendientes",
+    titleId: "pending-tasks__title-txt",
+    listId: "pending-tasks__list",
+  });
 
-  const field = form.elements[fieldName];
-  if (field) field.classList.remove("invalid");
-}
+  const completed = createTaskSection({
+    sectionId: "completed-tasks",
+    titleContainerClass: "completed-tasks__title",
+    dotSrc: "assets/icons/completed-tasks-dot.svg",
+    dotAlt: "Ícono tareas completadas",
+    titleId: "completed-tasks__title-txt",
+    listId: "completed-tasks__list",
+  });
 
-export function showSuccessMessage() {
-  const successMsg = document.querySelector("#success-message");
-  if (!successMsg) return;
+  pendingTasksSubtitle = pending.title;
+  pendingTasksContainer = pending.list;
 
-  if (successTimeoutId) {
-    clearTimeout(successTimeoutId);
-  }
-  successMsg.classList.remove("hidden");
+  completedTasksSubtitle = completed.title;
+  completedTasksContainer = completed.list;
 
-  successTimeoutId = setTimeout(() => {
-    hideSuccessMessage();
-  }, 5000);
-}
-
-export function hideSuccessMessage() {
-  const successMsg = document.querySelector("#success-message");
-  if (successMsg) {
-    successMsg.classList.add("hidden");
-  }
+  tasksPageContainer.append(pending.section, completed.section);
 }
 
 export function updateTasksCount(pendingCount, completedCount) {
   const tasksSummary = document.querySelector(".tasks__summary");
   tasksSummary.textContent = `${pendingCount} pendientes • ${completedCount} completadas`;
 
-  const pendingTasksSubtitle = document.getElementById("pending-tasks__title-txt");
-  pendingTasksSubtitle.textContent = `PENDIENTES (${pendingCount})`;
+  if (pendingTasksSubtitle) {
+    pendingTasksSubtitle.textContent = `PENDIENTES (${pendingCount})`;
+  }
 
-  const completedTasksSubtitle = document.getElementById("completed-tasks__title-txt");
-  completedTasksSubtitle.textContent = `COMPLETADAS (${completedCount})`;
+  if (completedTasksSubtitle) {
+    completedTasksSubtitle.textContent = `COMPLETADAS (${completedCount})`;
+  }
+}
+
+export function emptyTasksContainers() {
+  if (pendingTasksContainer) pendingTasksContainer.innerHTML = "";
+  if (completedTasksContainer) completedTasksContainer.innerHTML = "";
+}
+
+export function createEmptyTasksMessage() {
+  tasksPageContainer.innerHTML = ""
+  emptyTasksContainers();
+  const container = document.createElement("div");
+  container.classList.add("no-tasks-container");
+
+  const msg = document.createElement("p");
+  msg.textContent = "No tienes tareas";
+  msg.classList.add("load-msg");
+
+  container.append(msg);
+  tasksPageContainer.append(container);
+  console.log(tasksPageContainer);
+}
+
+export function createLoadMessage(content) {
+  const msg = document.createElement("p");
+  msg.classList.add("load-msg");
+  msg.textContent = content;
+  return msg;
 }
 
 export function createTaskCards(tasks) {
@@ -72,6 +122,7 @@ export function createTaskCards(tasks) {
     taskContentBox.classList.add("task-card__content");
 
     const checkbox = document.createElement("img");
+    checkbox.dataset.status = isPending ? "pending" : "completed";
     checkbox.src = isPending ? "assets/icons/pending-check-icon.svg" : "assets/icons/completed-check-icon.svg";
     checkbox.alt = isPending ? "Check desmarcado" : "Check marcado";
     checkbox.classList.add("task-card__check");
@@ -126,7 +177,7 @@ export function createTaskCards(tasks) {
     taskCard.append(taskColorBar);
     taskCard.append(taskContentBox);
 
-    isPending ? pendingTasksContainer.append(taskCard) : completedTasksContainer.append(taskCard);
+    isPending ? pendingTasksContainer?.append(taskCard) : completedTasksContainer?.append(taskCard);
   });
 }
 
@@ -150,7 +201,69 @@ export function createSubjectMenu(subjects) {
   });
 }
 
-export function emptyTasksContainers() {
-  pendingTasksContainer.innerHTML = "";
-  completedTasksContainer.innerHTML = "";
+const STATUS_CONFIG = {
+  pending: {
+    src: "assets/icons/pending-check-icon.svg",
+    alt: "Check desmarcado",
+  },
+  completed: {
+    src: "assets/icons/completed-check-icon.svg",
+    alt: "Check marcado",
+  },
+};
+
+export function changeCheckStatus(currentStatus, checkbox) {
+  const newStatus = currentStatus === "pending" ? "completed" : "pending";
+  const { src, alt } = STATUS_CONFIG[newStatus];
+
+  checkbox.dataset.status = newStatus;
+  checkbox.src = src;
+  checkbox.alt = alt;
+
+  return newStatus;
+}
+
+// FORM UI FUNCTIONS
+let successTimeoutId = null;
+
+export function showError(form, fieldName, message) {
+  const span = form.querySelector(`[data-error-para="${fieldName}"]`);
+  if (span) span.textContent = message;
+
+  const field = form.elements[fieldName];
+  if (field) field.classList.add("invalid");
+}
+
+export function resetErrors(form) {
+  form.querySelectorAll("[data-error-para]").forEach((span) => (span.textContent = ""));
+  form.querySelectorAll(".invalid").forEach((field) => field.classList.remove("invalid"));
+}
+
+export function resetError(form, fieldName) {
+  const span = form.querySelector(`[data-error-para="${fieldName}"]`);
+  if (span) span.textContent = "";
+
+  const field = form.elements[fieldName];
+  if (field) field.classList.remove("invalid");
+}
+
+export function showSuccessMessage() {
+  const successMsg = document.querySelector("#success-message");
+  if (!successMsg) return;
+
+  if (successTimeoutId) {
+    clearTimeout(successTimeoutId);
+  }
+  successMsg.classList.remove("hidden");
+
+  successTimeoutId = setTimeout(() => {
+    hideSuccessMessage();
+  }, 5000);
+}
+
+export function hideSuccessMessage() {
+  const successMsg = document.querySelector("#success-message");
+  if (successMsg) {
+    successMsg.classList.add("hidden");
+  }
 }

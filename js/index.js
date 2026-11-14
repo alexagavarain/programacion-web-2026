@@ -3,13 +3,20 @@ import {
   updateTasksCount,
   createTaskCards,
   createSubjectMenu,
-  emptyTasksContainers
+  emptyTasksContainers,
+  changeCheckStatus,
+  createTasksLayout,
+  createLoadMessage,
+  createEmptyTasksMessage
 } from "./ui.js";
 
 const menuButton = document.querySelector("#menu-button");
 const sidebarBody = document.querySelector(".sidebar__body");
 const themeButton = document.querySelector("#theme-button");
 const subjectsMenu = document.querySelector(".subjects-menu");
+const tasksPageContainer = document.querySelector(".tasks__content");
+
+console.log(tasksPageContainer);
 
 // HAMBURGER MENU
 menuButton.addEventListener("click", () => {
@@ -35,28 +42,71 @@ subjectsMenu.addEventListener("click", (e) => {
   }
 });
 
+tasksPageContainer.addEventListener("click", (e) => {
+  const taskCard = e.target.closest(".task-card");
+  if (!taskCard) return;
+  console.log("click en la tarea");
+
+  //LISTENER DEL CHECKBOX
+  const checkbox = e.target.closest(".task-card__check");
+  if (!checkbox) return;
+  changeCheckStatus(checkbox.dataset.status, checkbox);
+});
+
 let userTasks = [];
 let userSubjects = [];
 let pendingCount = 0;
 let completedCount = 0;
 
-async function init() {
+async function loadSubjects() {
+  const subjectsLoader = createLoadMessage("Cargando materias...")
+  tasksPageContainer.prepend(subjectsLoader);
   try {
-    const rawTasks = await getTasks();
     userSubjects = await getSubjects();
 
-    // ASIGNAR EL OBJ MATERIA A CADA TAREA
+    if (!userSubjects.length) return;
+
+    subjectsLoader.remove();
+  } catch (error) {
+    console.error(error);
+    subjectsLoader.textContent = "No pudimos cargar tus materias";
+  }
+}
+
+async function loadTasks() {
+  const tasksLoader = createLoadMessage("Cargando tareas...")
+  tasksPageContainer.prepend(tasksLoader);
+  try {
+    const rawTasks = await getTasks();
+
+    if (!rawTasks.length) return;
+
     userTasks = rawTasks.map(task => ({
       ...task,
       subject: userSubjects.find(s => String(s.id) === String(task.subjectId))
     }));
 
-    createSubjectMenu(userSubjects);
-    resetTasks(userTasks);
-    return;
+    tasksLoader.remove();
   } catch (error) {
-    console.error(error)
+    console.error(error);
+    tasksLoader.textContent = "No pudimos cargar tus tareas";
   }
+}
+
+async function init() {
+  await loadSubjects();
+  await loadTasks();
+
+  createSubjectMenu(userSubjects);
+
+  if (!userTasks.length) {
+    updateTasksCount(0, 0);
+    createEmptyTasksMessage();
+    return;
+  }
+
+  createTasksLayout();
+  resetTasks(userTasks);
 }
 
 function resetTasks(tasks) {
