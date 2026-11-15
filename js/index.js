@@ -1,5 +1,7 @@
 import { getTasks, getSubjects } from "./api.js";
+import { save, read, STORAGE_KEYS } from "./storage.js";
 import {
+  applyTheme,
   updateTasksCount,
   createTaskCards,
   createSubjectMenu,
@@ -28,8 +30,14 @@ menuButton.addEventListener("click", () => {
 });
 
 // LIGHT/DARK MODE
+let theme = read(STORAGE_KEYS.theme, "light"); // the first visit uses light
+if (theme !== "light" && theme !== "dark") theme = "light"; // ignores an unexpected saved value
+applyTheme(theme);
+
 themeButton.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
+  theme = theme === "light" ? "dark" : "light";
+  applyTheme(theme);
+  save(STORAGE_KEYS.theme, theme);
 });
 
 // SUBJECT MENU
@@ -40,7 +48,13 @@ subjectsMenu.addEventListener("click", (e) => {
   const subjectId = btn.dataset.id;
 
   if (subjectId === "all") {
-    resetTasks(userTasks)
+    if (!userTasks.length) {
+      updateTasksCount(0, 0);
+      return createEmptyTasksMessage();
+    }
+
+    createTasksLayout(); // the empty message removes the sections, so they're rebuilt first
+    resetTasks(userTasks);
   } else {
     filterTasksBySubject(subjectId);
   }
@@ -129,10 +143,11 @@ function countTasks(tasks) {
 // FILTRAR TAREAS POR MATERIA
 function filterTasksBySubject(subjectId) {
   const subjectTasks = userTasks.filter(t =>
-    String(t.subject.id) === String(subjectId)
+    String(t.subject?.id) === String(subjectId) // a task whose subject wasn't found has no subject
   );
 
   if (!subjectTasks.length) {
+    updateTasksCount(0, 0); // otherwise the summary keeps the previous filter's numbers
     return createEmptyTasksMessage();
   }
 

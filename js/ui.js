@@ -1,3 +1,5 @@
+import Swal from "../node_modules/sweetalert2/dist/sweetalert2.esm.all.js"; // the browser needs the real path, not the package name
+
 const tasksPageContainer = document.querySelector(".tasks__content");
 
 let pendingTasksSubtitle = null;
@@ -222,6 +224,14 @@ export function changeCheckStatus(currentStatus, checkbox) {
   return newStatus;
 }
 
+// THEME
+export function applyTheme(theme) {
+  document.body.classList.toggle("dark", theme === "dark");
+
+  const themeButton = document.querySelector("#theme-button");
+  if (themeButton) themeButton.setAttribute("aria-pressed", String(theme === "dark")); // tells screen readers if dark mode is on
+}
+
 // FORM UI FUNCTIONS
 let successTimeoutId = null;
 
@@ -265,4 +275,13 @@ export function hideSuccessMessage() {
   if (successMsg) {
     successMsg.classList.add("hidden");
   }
+}
+
+// ALERTS (SWEETALERT2)
+export function showRegisterAlert(name) {
+  return Swal.fire({
+    icon: "success",
+    title: "¡Registro exitoso!",
+    text: `Te damos la bienvenida, ${name}. Tu cuenta ha sido registrada.`, // name in text, not title (avoids XSS)
+  });
 }
