@@ -354,7 +354,7 @@ ul {
   text-transform: uppercase;
   font-size: 0.8rem;
   font-weight: 500;
-  color: var(--secondary-blue-gray);
+  color: var(--color-text-secondary);
 }
 
 .tasks__content {
@@ -435,7 +435,7 @@ ul {
 .no-tasks-msg {
   align-self: center;
   text-align: center;
-  color: var(--secondary-blue-gray);
+  color: var(--color-text-secondary);
   font-size: 0.8rem;
 }
 
@@ -497,7 +497,7 @@ ul {
 
 .task-card__description {
   flex: 1 0 100%;
-  color: var(--secondary-blue-gray);
+  color: var(--color-text-secondary);
   margin: 0;
 }
 
@@ -529,7 +529,7 @@ ul {
 .task-card__date {
   display: inline-block;
   margin: 0px;
-  color: var(--secondary-blue-gray);
+  color: var(--color-text-secondary);
 }
 
 .task-card__date--overdue {
@@ -548,7 +548,7 @@ ul {
 
 .load-msg {
   margin-top: 10%;
-  color: var(--secondary-blue-gray);
+  color: var(--color-text-secondary);
   text-align: center;
 }
 
