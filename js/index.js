@@ -1,6 +1,11 @@
-import { getTasks, getSubjects } from "./api.js";
+import { getTasks, getSubjects, createTask } from "./api.js";
 import { save, read, STORAGE_KEYS } from "./storage.js";
+import { validateNewTask } from "./validators.js";
 import {
+  resetErrors,
+  resetError,
+  showError,
+  showSuccessMessage,
   applyTheme,
   updateTasksCount,
   createTaskCards,
@@ -17,12 +22,11 @@ const sidebarBody = document.querySelector(".sidebar__body");
 const themeButton = document.querySelector("#theme-button");
 const subjectsMenu = document.querySelector(".subjects-menu");
 const tasksPageContainer = document.querySelector(".tasks__content");
-
 const newTaskBtn = document.getElementById("new-task-button");
 const newTaskModal = document.getElementById("new-task-modal");
 const newTaskForm = document.getElementById("new-task-form");
-const closeModalBtn = document.getElementById("close-modal-btn");
 const cancelModalBtn = document.getElementById("cancel-modal-btn")
+const saveModalBtn = document.getElementById("save-modal-btn");
 
 // HAMBURGER MENU
 menuButton.addEventListener("click", () => {
@@ -53,25 +57,82 @@ subjectsMenu.addEventListener("click", (e) => {
       return createEmptyTasksMessage();
     }
 
-    createTasksLayout(); // the empty message removes the sections, so they're rebuilt first
+    createTasksLayout();
     resetTasks(userTasks);
   } else {
     filterTasksBySubject(subjectId);
   }
 });
 
-// NEW TASK BUTTON
-newTaskBtn.addEventListener("click", (e) => {
+// NEW TASK FORM
+newTaskBtn.addEventListener("click", () => {
   newTaskModal.showModal();
-})
+});
 
-closeModalBtn.addEventListener("click", (e) => {
+cancelModalBtn.addEventListener("click", () => {
   newTaskModal.close();
-})
+});
 
-cancelModalBtn.addEventListener("click", (e) => {
-  newTaskModal.close();
-})
+newTaskForm.addEventListener("input", (e) => {
+  if (e.target.name) {
+    resetError(newTaskForm, e.target.name);
+  }
+});
+
+newTaskForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  resetErrors(newTaskForm);
+
+  const subjectSelect = newTaskForm.querySelector("select");
+  const selectedSubjectId = Number(subjectSelect.value);
+
+  const formData = Object.fromEntries(new FormData(newTaskForm));
+  formData.subjectId = subjectSelect.value;
+
+  const errors = validateNewTask(formData);
+
+  if (Object.keys(errors).length > 0) {
+    Object.entries(errors).forEach(([fieldName, message]) => {
+      showError(newTaskForm, fieldName, message);
+    });
+    return;
+  }
+
+  const payload = {
+    title: formData.title,
+    description: formData.description || "",
+    subjectId: selectedSubjectId,
+    dueDate: formData.due_date || "",
+    dueTime: formData.due_time || ""
+  };
+
+  try {
+    saveModalBtn.disabled = true;
+    saveModalBtn.textContent = "Guardando...";
+
+    const createdTask = await createTask(payload);
+
+    const enrichedTask = {
+      ...createdTask,
+      status: createdTask.status || "pending",
+      subject: userSubjects.find(s => String(s.id) === String(createdTask.subjectId))
+    };
+
+    userTasks.push(enrichedTask);
+    createTasksLayout();
+    resetTasks(userTasks);
+
+    resetErrors(newTaskModal);
+    newTaskModal.close();
+    showSuccessMessage();
+  } catch (error) {
+    console.error(error);
+    showError(newTaskForm, "title", error.message);
+  } finally {
+    saveModalBtn.disabled = false;
+    saveModalBtn.textContent = "Guardar";
+  }
+});
 
 tasksPageContainer.addEventListener("click", (e) => {
   const taskCard = e.target.closest(".task-card");

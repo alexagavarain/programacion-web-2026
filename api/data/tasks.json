@@ -1,0 +1,38 @@
+[
+    {
+        "id": 6,
+        "title": "Titulo",
+        "description": "Descripcion",
+        "subjectId": 2,
+        "dueDate": "2026-12-30",
+        "dueTime": "12:59",
+        "created": "2026-11-24T06:40:07+01:00"
+    },
+    {
+        "id": 7,
+        "title": "skdj",
+        "description": "ksdj",
+        "subjectId": 1,
+        "dueDate": "2026-12-31",
+        "dueTime": "12:59",
+        "created": "2026-11-24T06:41:24+01:00"
+    },
+    {
+        "id": 8,
+        "title": "asdj",
+        "description": "jasd",
+        "subjectId": 1,
+        "dueDate": "2026-12-31",
+        "dueTime": "12:59",
+        "created": "2026-11-24T06:41:51+01:00"
+    },
+    {
+        "id": 9,
+        "title": "2jsj",
+        "description": "ss",
+        "subjectId": 1,
+        "dueDate": "2026-12-31",
+        "dueTime": "12:59",
+        "created": "2026-11-24T06:44:16+01:00"
+    }
+]

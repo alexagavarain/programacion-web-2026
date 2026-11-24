@@ -107,10 +107,9 @@
   <!-- MODAL DE NUEVA TAREA -->
 
   <dialog id="new-task-modal" class="modal">
-    <form class="form-container" id="new-task-form" action="/create-new-task" method="POST" novalidate>
+    <form class="form-container" id="new-task-form" method="POST" novalidate>
       <header class="new-task-modal__header">
         <h2 class="new-task-modal__title">Nueva tarea</h2>
-        <button class="task-modal__close" id="close-modal-btn" type="button" aria-label="Cerrar modal">✕</button>
       </header>
       <div class="new-task-modal__body">
         <div class="input-field">
@@ -128,14 +127,14 @@
 
         <div class="input-field">
           <label class="form-label" for="task-subject">Materia</label>
-          <select class="long-form-input" required id="task-subject" name="subject">
+          <select class="long-form-input" required id="subject-id" name="subjectId">
             <option value="" selected disabled>Selecciona una materia</option>
-            <option value="database-2">Base de Datos II</option>
-            <option value="web-programming">Programación Web</option>
-            <option value="software-engineering-1">Ingeniería de Software I</option>
-            <option value="user-interface-design">Diseño de Interfaces de Usuario</option>
-            <option value="computation-theory">Teoría de la Computación</option>
-            <option value="networks-1">Redes I</option>
+            <option value="1">Base de Datos II</option>
+            <option value="2">Programación Web</option>
+            <option value="3">Ingeniería de Software I</option>
+            <option value="4">Diseño de Interfaces de Usuario</option>
+            <option value="5">Teoría de la Computación</option>
+            <option value="6">Redes I</option>
           </select>
         </div>
 
