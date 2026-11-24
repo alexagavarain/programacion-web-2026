@@ -1,0 +1,8 @@
+<?php
+return [
+    ['id' => 1, 'title' => 'Tarea 1', 'description' => 'Descripcion de la tarea 1', 'subjectId' => 1, 'dueDate' => '2026-10-30', 'status' => 'pending'],
+    ['id' => 2, 'title' => 'Tarea 2', 'description' => 'Descripcion de la tarea 2', 'subjectId' => 2, 'dueDate' => '2026-10-30', 'status' => 'pending'],
+    ['id' => 3, 'title' => 'Tarea 3', 'description' => 'Descripcion de la tarea 3', 'subjectId' => 3, 'dueDate' => '2026-10-30', 'status' => 'pending'],
+    ['id' => 4, 'title' => 'Tarea 4', 'description' => 'Descripcion de la tarea 4', 'subjectId' => 4, 'dueDate' => '2026-10-30', 'status' => 'completed'],
+    ['id' => 5, 'title' => 'Tarea 5', 'description' => 'Descripcion de la tarea 5', 'subjectId' => 4, 'dueDate' => '2026-10-30', 'status' => 'completed'],
+];
