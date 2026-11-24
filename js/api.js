@@ -1,5 +1,5 @@
 const TASKS_URL = new URL("../api/tasks.php", import.meta.url).href;
-const SUBJECTS_URL = new URL("../data/subjects.json", import.meta.url).href;
+const SUBJECTS_URL = new URL("../api/subjects.php", import.meta.url).href;
 
 export async function getTasks() {
   const res = await fetch(TASKS_URL);
