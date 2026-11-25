@@ -117,7 +117,7 @@ newTaskForm.addEventListener("submit", async (e) => {
 
     const enrichedTask = {
       ...createdTask,
-      status: createdTask.status || "pending",
+      status: createdTask.status || "PENDIENTE",
       subject: userSubjects.find(s => String(s.id) === String(createdTask.subjectId))
     };
 
@@ -201,7 +201,7 @@ function resetTasks(tasks) {
 function countTasks(tasks) {
   pendingCount = 0;
   completedCount = 0;
-  tasks?.forEach(t => t.status === "pending" ? pendingCount++ : completedCount++);
+  tasks?.forEach(t => t.status === "PENDIENTE" ? pendingCount++ : completedCount++);
 }
 
 // FILTRAR TAREAS POR MATERIA
