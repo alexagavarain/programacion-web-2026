@@ -1,86 +1,149 @@
 <?php
 require __DIR__ . '/helpers.php';
-$tasks = require __DIR__ . '/data/initial-tasks.php';
+$tasks = require __DIR__ . '/db.php';
 
-$file = __DIR__ . '/data/tasks.json'; 
-$newTasks = file_exists($file) ? json_decode(file_get_contents($file), true) : [];
-foreach ($newTasks as $t) {
-    $tasks[] = $t;
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if (isset($_GET['id'])) {
-        $id = (int) $_GET['id'];
-        foreach ($tasks as $t) {
-            if ($t['id'] === $id) {
-                responder($t);
-            }
-        }
-        responder(['error' => 'Tarea no encontrada'], 404);
-    }
-    responder($tasks);
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $input = json_decode(file_get_contents('php://input'), true);
-
-    if (!is_array($input)) {
-        responder(['error' => 'Cuerpo JSON inválido'], 422);
-    }
-
+function validateTask(array $input): array{
     $title = trim($input['title'] ?? '');
     $description = trim($input['description'] ?? '');
     $subjectId = (int) ($input['subjectId'] ?? 0);
     $dueDate = trim($input['dueDate'] ?? '');
     $dueTime = trim($input['dueTime'] ?? '');
+    $status = $input['status'] ?? 'PENDIENTE';
 
     if ($title === '' ){
-        responder(['error' => 'El título es obligatorio'], 422);
+        response(['error' => 'El título es obligatorio'], 422);
     };
 
     if (strlen($title) < 3) {
-        responder(['error' => 'El título debe contener al menos 3 letras'], 422);
+        response(['error' => 'El título debe contener al menos 3 letras'], 422);
     }
 
     if ($subjectId <= 0){
-        responder(['error' => 'Debes seleccionar una materia'], 422);
+        response(['error' => 'Debes seleccionar una materia'], 422);
     };
 
     if ($dueDate === ''){
-        responder(['error' => 'La fecha de entrega es obligatoria'], 422);
+        response(['error' => 'La fecha de entrega es obligatoria'], 422);
     };
 
-    if ($dueDate === ''){
-        responder(['error' => 'La hora de entrega es obligatoria'], 422);
-    };
-
-    $maxId = 0;
-    foreach ($tasks as $t) {
-        if (isset($t['id']) && (int) $t['id'] > $maxId) {
-            $maxId = (int) $t['id'];
-        }
-    }
-
-    $task = [
-        'id' => $maxId + 1,
-        'title' => $title,
-        'description' => $description,
-        'subjectId' => $subjectId,
-        'dueDate' => $dueDate,
-        'dueTime' => $dueTime,
-        'created' => date('c'),
-    ];
-
-    $newTasks[] = $task;
-
-    file_put_contents(
-        $file,
-        json_encode($newTasks, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE),
-        LOCK_EX
-    );
-
-    responder($task, 201);
+    return [$title, $description, $subjectId, $dueDate, $dueTime, $status];
 }
 
 
-responder(['error' => 'Método no permitido'], 405);
+
+try {
+    $pdo = conect();
+    $method = $_SERVER['REQUEST_METHOD'];
+    $id = isset($_GET['id']) ? (int) $_GET['id'] : null;
+
+    switch($method){
+        case 'GET':
+            if (isset($_GET['id'])) {
+                $stmt = $pdo->prepare('SELECT id, title, description, subject_id, due_date, due_time, status FROM tasks WHERE id = :id');
+                
+                $stmt->execute(['id' => (int) $_GET['id']]);
+                $task = $stmt->fetch();
+
+                if (!$task){
+                    response(['error' => 'Tarea no encontrada'], 404);
+                }
+                response($task);
+            }
+
+            $search = trim($_GET['search'] ?? '');
+            $stmt = $pdo->prepare(
+                'SELECT id, title, description, subject_id, due_date, due_time, status FROM tasks WHERE title LIKE :search ORDER BY id'
+            );
+            $stmt->execute(['search' => "%$search%"]);
+
+            response($stmt->fetchAll());
+            break;
+
+        case 'POST':
+
+            [$title, $description, $subjectId, $dueDate, $dueTime, $status] = validateTask(readJson());
+
+            $stmt = $pdo->prepare(
+                'INSERT INTO tasks (title, description, subject_id, due_date, due_time, status) VALUES (:title, :description, :subjectId, :dueDate, :dueTime, :status)'
+            );
+            $stmt->execute(['title' => $title, 'description' => $description, 'subjectId' => $subjectId,
+            'dueDate' => $dueDate,
+            'dueTime' => $dueTime,
+            'status' => $status]);
+
+            response(['id' => (int) $pdo->lastInsertId(),
+            'title' => $title,
+            'description' => $description,
+            'subjectId' => $subjectId,
+            'dueDate' => $dueDate,
+            'dueTime' => $dueTime,
+            'status' => $status], 201);
+            break;
+
+        case 'PUT':
+            if ($id === null){
+                response(['error' => 'Ingrese un id'], 400);
+            };
+
+            [$title, $description, $subjectId, $dueDate, $dueTime, $status] = validateTask(readJson());
+            
+            $exists = $pdo->prepare('SELECT id FROM tasks WHERE id = :id');
+            $exists->execute(['id' => $id]);
+
+            if(!$exists->fetch()) {
+                response(['error' => 'No se encontró la tarea'], 404);
+            }
+
+            $stmt = $pdo->prepare(
+                'UPDATE tasks SET title = :title, description = :description, subject_id = :subjectId, due_date = :dueDate, due_time = :dueTime, status = :status WHERE id = :id'
+            );
+
+            $stmt->execute([
+                'id' => $id,
+                'title' => $title, 
+                'description' => $description, 
+                'subjectId' => $subjectId,
+                'dueDate' => $dueDate,
+                'dueTime' => $dueTime,
+                'status' => $status]);
+
+            response(['id' => $id,
+            'title' => $title,
+            'description' => $description,
+            'subjectId' => $subjectId,
+            'dueDate' => $dueDate,
+            'dueTime' => $dueTime,
+            'status' => $status]);
+            break;
+
+        case 'DELETE':
+            if ($id === null){
+                response(['error' => 'Ingrese un id'], 400);
+            }
+
+            try{
+                $stmt = $pdo->prepare('DELETE FROM tasks WHERE id = :id');
+                $stmt->execute(['id'=>$id]);
+            } catch (PDOException $e){
+                if ($e->getCode() === '23000'){
+                    response(['error' => 'La tarea no se puede eliminar'], 409);
+                }
+                throw $e;
+            }
+
+            if ($stmt->rowCount() === 0){
+                response(['error' => 'No se encontró la tarea'], 404);
+            }
+
+            http_response_code(204);
+            exit;
+
+        default:
+            response(['error' => 'Método no permitido'], 405);
+    }
+} catch (PDOException $e){
+    if ($e->getCode() === '45000') {
+        response(['error' => $e->errorInfo[2] ?? 'La fecha de entrega no puede ser anterior a la actual'], 422);
+    }
+    response(['error' => 'Ocurrió un error'], 500);
+}

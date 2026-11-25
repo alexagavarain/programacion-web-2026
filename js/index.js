@@ -10,6 +10,7 @@ import {
   updateTasksCount,
   createTaskCards,
   createSubjectMenu,
+  createSelectSubjectMenu,
   emptyTasksContainers,
   changeCheckStatus,
   createTasksLayout,
@@ -66,6 +67,7 @@ subjectsMenu.addEventListener("click", (e) => {
 
 // NEW TASK FORM
 newTaskBtn.addEventListener("click", () => {
+  createSelectSubjectMenu(userSubjects);
   newTaskModal.showModal();
 });
 
@@ -79,6 +81,7 @@ newTaskForm.addEventListener("input", (e) => {
   }
 });
 
+//CREATE NEW TASK
 newTaskForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   resetErrors(newTaskForm);
