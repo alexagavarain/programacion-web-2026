@@ -26,7 +26,7 @@ function validateTask(array $input): array{
         response(['error' => 'La fecha de entrega es obligatoria'], 422);
     };
 
-    return [$title, $description, $subjectId, $dueDate, $dueTime, $status];
+    return [$title, $description, $subjectId, $dueDate, $dueTime !== '' ? $dueTime : null, $status]; // an empty time is saved as NULL
 }
 
 
@@ -39,7 +39,7 @@ try {
     switch($method){
         case 'GET':
             if (isset($_GET['id'])) {
-                $stmt = $pdo->prepare('SELECT id, title, description, subject_id, due_date, due_time, status FROM tasks WHERE id = :id');
+                $stmt = $pdo->prepare('SELECT id, title, description, subject_id AS subjectId, due_date AS dueDate, due_time AS dueTime, status FROM tasks WHERE id = :id');
                 
                 $stmt->execute(['id' => (int) $_GET['id']]);
                 $task = $stmt->fetch();
@@ -52,7 +52,7 @@ try {
 
             $search = trim($_GET['search'] ?? '');
             $stmt = $pdo->prepare(
-                'SELECT id, title, description, subject_id, due_date, due_time, status FROM tasks WHERE title LIKE :search ORDER BY id'
+                'SELECT id, title, description, subject_id AS subjectId, due_date AS dueDate, due_time AS dueTime, status FROM tasks WHERE title LIKE :search ORDER BY id'
             );
             $stmt->execute(['search' => "%$search%"]);
 

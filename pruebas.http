@@ -1,8 +1,5 @@
 @host = http://localhost:8000
 
-### Listar todas las materias
-GET {{host}}/api/subjects.php
-
 ### Listar todas las tareas
 GET {{host}}/api/tasks.php
 
@@ -78,3 +75,107 @@ DELETE {{host}}/api/tasks.php?id=2
 
 ### Eliminar una tarea que no existe (espera 404)
 DELETE {{host}}/api/tasks.php?id=999
+
+###############################################################
+# MATERIAS: LEER (SELECT)
+###############################################################
+
+### Listar todas las materias
+GET {{host}}/api/subjects.php
+
+### Obtener una materia por ID
+GET {{host}}/api/subjects.php?id=1
+
+### Buscar materias por nombre
+GET {{host}}/api/subjects.php?search=prog
+
+### Obtener una materia que no existe (espera 404)
+GET {{host}}/api/subjects.php?id=999
+
+###############################################################
+# MATERIAS: CREAR (INSERT)
+###############################################################
+
+### Crear una materia válida (espera 201)
+POST {{host}}/api/subjects.php
+Content-Type: application/json
+
+{
+  "name": "Redes I",
+  "color": "#2563EB"
+}
+
+### Crear una materia sin color (espera 201 con color null)
+POST {{host}}/api/subjects.php
+Content-Type: application/json
+
+{
+  "name": "Programación Móvil"
+}
+
+### Crear una materia sin nombre (espera 422)
+POST {{host}}/api/subjects.php
+Content-Type: application/json
+
+{
+  "name": "   ",
+  "color": "#2563EB"
+}
+
+### Crear una materia con nombre de más de 50 caracteres (espera 422)
+# Es una optativa: ninguna materia de 5º o 6º pasa de 50 caracteres
+POST {{host}}/api/subjects.php
+Content-Type: application/json
+
+{
+  "name": "Big Data y Herramientas de Procesamiento de Datos Masivos",
+  "color": "#2563EB"
+}
+
+###############################################################
+# MATERIAS: ACTUALIZAR (UPDATE)
+# Cambia el id por el que te devolvió el POST
+###############################################################
+
+### Actualizar una materia (espera 200)
+PUT {{host}}/api/subjects.php?id=6
+Content-Type: application/json
+
+{
+  "name": "Redes II",
+  "color": "#0F766E"
+}
+
+### Actualizar con un color de más de 10 caracteres (espera 422)
+PUT {{host}}/api/subjects.php?id=6
+Content-Type: application/json
+
+{
+  "name": "Redes II",
+  "color": "verde-esmeralda"
+}
+
+### Actualizar una materia que no existe (espera 404)
+PUT {{host}}/api/subjects.php?id=999
+Content-Type: application/json
+
+{
+  "name": "Ingeniería de Software II",
+  "color": "#000000"
+}
+
+###############################################################
+# MATERIAS: ELIMINAR (DELETE)
+###############################################################
+
+### Eliminar la materia creada (espera 204)
+DELETE {{host}}/api/subjects.php?id=6
+
+### Eliminar la materia sin color (espera 204)
+DELETE {{host}}/api/subjects.php?id=7
+
+### Eliminar una materia que no existe (espera 404)
+DELETE {{host}}/api/subjects.php?id=999
+
+### Eliminar una materia que tiene tareas (espera 409)
+DELETE {{host}}/api/subjects.php?id=1
