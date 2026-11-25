@@ -110,7 +110,7 @@ export function createTaskCards(tasks) {
   tasks?.forEach(t => {
     let isPending;
 
-    t.status === "pending" ? isPending = true : isPending = false;
+    t.status === "PENDIENTE" ? isPending = true : isPending = false;
 
     const taskCard = document.createElement("div");
     taskCard.classList.add("task-card");
@@ -193,12 +193,25 @@ export function createSubjectMenu(subjects) {
 
   // Crear botones para las materias
   subjects.forEach(s => {
+    if (s.id === 0) return; // Saltar opcion "Selecciona una materia"
+
     const subjectBtn = document.createElement("button");
     subjectBtn.style.setProperty("--subject-color", s.color);
     subjectBtn.dataset.id = s.id;
     subjectBtn.textContent = s.name;
 
     subjectsMenu.append(subjectBtn);
+  });
+}
+
+export function createSelectSubjectMenu(subjects) {
+  const select = document.getElementById("subject-id");
+  subjects.forEach(s => {
+    const option = document.createElement("option");
+    option.value = s.id;
+    option.textContent = s.name;
+
+    select.appendChild(option);
   });
 }
 

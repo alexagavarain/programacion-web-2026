@@ -7,12 +7,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $id = (int) $_GET['id'];
         foreach ($subjects as $s) {
             if ($s['id'] === $id) {
-                responder($s);
+                response($s);
             }
         }
-        responder(['error' => 'Materia no encontrada'], 404);
+        response(['error' => 'Materia no encontrada'], 404);
     }
-    responder($subjects);
+    response($subjects);
 }
 
-responder(['error' => 'Método no permitido'], 405);
+response(['error' => 'Método no permitido'], 405);
